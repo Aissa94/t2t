@@ -1,0 +1,107 @@
+.hero {
+
+  .blob1{
+    width: 570px;
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    filter: blur(20px);
+  }
+
+  .blob2{
+    width: 570px;
+  
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    filter: blur(20px);
+  }
+
+  .blob3{
+    width: 570px;
+    position: absolute;
+    top: 2rem;
+    right: 50%;
+    filter: blur(20px);
+  }
+
+  .blob4{
+    width: 570px;
+    position: absolute;
+    top: 3rem;
+    right: 20%;
+    filter: blur(20px);
+  }
+  .conatiner {
+    max-width: 1366px;
+    margin: 0 auto;
+
+    .grid {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      .sec1 {
+        position: relative;
+  
+        .gradient{
+          float: right;
+          height: 100%;
+          width: 468px;
+          background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+          filter: blur(20px);
+          position: absolute;
+          right: 0;
+          z-index: 2;
+        }
+        .filter {
+          float: right;
+          height: 100%;
+          width: 468px;
+          filter: blur(20px);
+          position: absolute;
+          right: 0;
+          z-index: 1;
+        }
+        .h2 {
+          font-style: italic;
+          font-size: 50px;
+          font-family: "Ubuntu", sans-serif;
+          color: #449ce1;
+          z-index: 10;
+          margin-bottom: 10px;
+          position: relative;
+        }
+
+        .h1 {
+          font-size: 80px;
+          font-family: "Ubuntu", sans-serif;
+          color: #449ce1;
+          font-weight: bold;
+          text-transform: uppercase;
+          margin-top: 5px;
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 10;
+        }
+
+        .p {
+          font-size: 21px;
+          color: #2e2e2e;
+          font-weight: 400;
+          margin-bottom: 2rem;
+          position: relative;
+          z-index: 10;
+        }
+
+        .button {
+          background-color: #35d5c5;
+          color: #fff;
+          border: none;
+          border-radius: 50px;
+          font-size: 22px;
+          padding: 10px 20px;
+          z-index: 10;
+        }
+      }
+    }
+  }
+}
