@@ -1,38 +1,91 @@
-.header{
-   max-width: 1200px;
-   margin: 0 auto;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding: 1rem 0;
+.header {
+  max-width: 1366px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 999;
 
-   .menu{
+  .h3Effect {
+    color: #707070;
+    font-size: 16px;
+    font-family: "Ubuntu", sans-serif;
+  }
+
+  .submenu {
+    transition: all 800ms ease-in-out;
+  }
+
+  .menuu {
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    background-color: #fff;
+    border-radius: 30px;
+    width: 250px;
+    transition: all 800ms ease-in-out;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    .ul{
+      list-style: none;
+     
+      .flex{
+        display: flex;
+        align-items: center;
+
+        .icons{
+          width: 25px;
+          height: 25px;
+          color: #707070;
+          margin-right: 10px;
+        }
+      }
+
+      .li{
+        padding: 0.8rem 0;
+      }
+    }
+
+  }
+
+  .menu {
     display: flex;
     align-items: center;
-    border: 1px solid #B3B3B3;
-    
+    border: 1px solid #b3b3b385;
     border-radius: 50px;
     width: 110px;
     justify-content: space-between;
+    transition: all 800ms ease-in-out;
 
-    .profile{
-        display: flex;
-        align-items: center;
-        padding: 2px;
+    &.active {
+      width: 250px;
     }
 
-    .toggle{
-        display: flex;
-        align-items: center;
-        padding: 2px;
-       
-
-        .icons{
-            width: 40px;
-            height: 40px;
-            padding-right: 5px;
-            color: #707070;
-        }
+    .profile {
+      display: flex;
+      align-items: center;
+      padding: 2px;
     }
-   }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+
+      .btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .icons {
+        width: 40px;
+        height: 40px;
+        padding-right: 5px;
+        color: #707070;
+      }
+    }
+  }
 }
