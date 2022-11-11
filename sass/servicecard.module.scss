@@ -1,0 +1,50 @@
+.CardService {
+    display: flex;
+    flex-direction: column;
+    width: 267px;
+    height: 179px;
+    background-color: #449CE1;
+    border-radius: 34px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.3);
+    
+        
+     
+
+    .content {
+       
+        text-align: center;
+        font-size: 20px;
+        color: #ffffff;
+        letter-spacing: 1px;
+        font-weight: bold;
+        line-height: 100px;
+
+
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 100px;
+       
+       
+     
+    }
+    .logodiv{
+        margin-top: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 79px;
+        height: 58px;
+
+    }
+   
+  
+
+}
+
+.CardService:hover{
+    background-color: #35D5C5;
+}
