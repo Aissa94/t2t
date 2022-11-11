@@ -1,0 +1,43 @@
+.conatiner {
+    max-width: 1366px;
+    margin: 0 auto;
+    height: 60vh;
+
+    .title {
+        display: flex;
+        justify-content: center;
+        font-size: 56px;
+        color: #449CE1;
+    }
+
+    .borderService {
+        display: flex;
+        max-width: 1437px;
+        height: 103px;
+        justify-content: center;
+        align-items: center;
+        background-color: #449CE1;
+        border-radius: 0px 52px 52px 52px;
+        box-shadow: inset 0px 3px 2px rgba(0, 0, 0, 0.3);
+
+        .text {
+            color: #ffffff;
+            font-size: 23px;
+            font-style: italic;
+            padding: 10px 50px 30px 50px;
+            text-align: center;
+        }
+        
+
+    }
+
+    .CardGroup {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+      
+    }
+
+
+}

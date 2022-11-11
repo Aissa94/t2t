@@ -3,6 +3,10 @@ import Image from 'next/image'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navbar/Navbar'
 import styles from '../sass/Home.module.scss'
+import Body from '../components/MainBody/Body'
+import Footer from '../components/Footer/Footer'
+
+
 
 
 export default function Home() {
@@ -15,9 +19,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-         <Navbar/>
-         <Hero/>
+        <Navbar />
+        <Hero />
+        <Body/>
+        <Footer/>
+
+        
+       
       </main>
+     
+
+      
+    
+
     </div>
   )
 }
