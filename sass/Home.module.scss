@@ -2,73 +2,233 @@
   position: relative;
   height: 100vh;
   
-  .blob1{
+  .blob1 {
     width: 570px;
     position: absolute;
     bottom: 2rem;
     left: 0;
-    filter: blur(20px);
+    filter: blur(50px);
   }
 
-  .blob2{
+  .blob2 {
     width: 570px;
-  
     position: absolute;
     bottom: 0;
     right: 0;
-    filter: blur(20px);
+    filter: blur(50px);
   }
 
-  .blob3{
+  .blob3 {
     width: 570px;
     position: absolute;
     top: 2rem;
     right: 50%;
-    filter: blur(20px);
+    filter: blur(50px);
   }
 
-  .blob4{
+  .blob4 {
     width: 570px;
     position: absolute;
     top: 3rem;
     right: 20%;
-    filter: blur(20px);
+    filter: blur(50px);
   }
   .conatiner {
     max-width: 1366px;
     margin: 0 auto;
 
+
+    .navItem{
+      position: relative;
+      margin-top: 0rem;
+      margin-top: -1rem;
+    
+
+      .ul{
+        display: flex;
+       
+        padding-left: 50px ;
+      
+      }
+      .hr{
+        margin-top: 1rem;
+        background:#F3EEEE ;
+        width: 100%;
+        height: 1px;
+      }
+
+      .margin{
+        margin-top: 2rem;
+      }
+
+      .flexItem{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0 1rem;
+        
+
+        .item{
+          display: flex;
+          gap: 1rem;
+
+
+          .search{
+            background-color: #35d5c5;
+            width: 50px;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50px;
+            height: 50px;
+          }
+
+          .itemChild2{
+             .h4{
+              margin: 0;
+              font-weight: 300;
+              font-size: 16px;
+              color: #B3B3B3;
+              font-family: "Ubuntu", sans-serif;
+              margin-bottom: 5px;
+             }
+             .h2{
+              margin: 0;
+              color: #707070;
+              font-size: 21px;
+              font-family: "Ubuntu", sans-serif;
+             }
+          }
+
+          .itemChild{
+            display: flex;
+            align-items: flex-end;
+
+            .icons{
+               color: #449ce1;
+               width: 30px;
+               height: 30px;
+
+            }
+
+          }
+        }
+      }
+     
+
+      .allBtn{
+        display: flex;
+        .btn1{
+           margin-right: 1rem ;
+           border: none;
+           background-color: transparent;
+           border: 1px solid #7070707e;
+           padding: 8px 15px;
+           border-radius: 40px;
+           color: #449ce1;
+           font-family: "Ubuntu", sans-serif;
+           font-weight: 500;
+           &:hover{
+            background-color: #449ce1;
+            color: #fff;
+            border: none;
+           }
+        }
+
+      }
+
+      
+    }
+
+    
     .grid {
       display: grid;
       grid-template-columns: 50% 50%;
+
+      .sec2 {
+        height: 570px;
+        z-index: 100;
+        position: relative;
+
+
+        .grid {
+          height: 570px;
+          position: relative;
+
+          .box1 {
+            .boxImage {
+              width: 100%;
+              height: 100%;
+              border-radius: 40px;
+              background-size: cover;
+              background-position: center;
+              object-fit: cover;
+            }
+          }
+
+          .box2 {
+            width: 100%;
+            .image1 {
+              .boxImage {
+                width: 100%;
+                height: 280px;
+                border-radius: 40px;
+                background-size: cover;
+                background-position: center;
+                object-fit: cover;
+              }
+            }
+            .image2 {
+              display: flex;
+              width: 100%;
+              gap: 10px;
+
+              .boxImage {
+                width: 250px;
+                height: 280px;
+                border-radius: 40px;
+                background-size: cover;
+                background-position: center;
+                object-fit: cover;
+              }
+            }
+          }
+        }
+      }
       .sec1 {
         position: relative;
-  
-        .gradient{
-          float: right;
-          height: 100%;
-          width: 468px;
-          background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-          filter: blur(20px);
-          position: absolute;
-          right: 0;
-          z-index: 2;
-        }
-        .filter {
-          float: right;
-          height: 100%;
-          width: 468px;
-          filter: blur(20px);
-          position: absolute;
-          right: 0;
-          z-index: 1;
-        }
+
+        // .gradient {
+        //   float: right;
+        //   height: 100%;
+        //   width: 468px;
+        //   background: linear-gradient(
+        //     90deg,
+        //     rgba(255, 255, 255, 1) 0%,
+        //     rgba(255, 255, 255, 0) 100%
+        //   );
+        //   filter: blur(10px);
+        //   position: absolute;
+        //   right: 0px;
+        //   z-index: 5;
+        // }
+        // .filter {
+        //   float: right;
+        //   height: 100%;
+        //   width: 468px;
+        //   filter: blur(50px);
+        //   position: absolute;
+        //   right: 0px;
+        //   z-index: 5;
+        // }
+
         .h2 {
           font-style: italic;
           font-size: 50px;
           font-family: "Ubuntu", sans-serif;
           color: #449ce1;
           z-index: 10;
+          font-weight: 400;
           margin-bottom: 10px;
           position: relative;
         }
@@ -89,9 +249,9 @@
           font-size: 21px;
           color: #2e2e2e;
           font-weight: 400;
-          margin-bottom: 2rem;
+          margin-bottom: 3rem;
           position: relative;
-          z-index: 10;
+          z-index: 1000;
         }
 
         .button {
@@ -100,7 +260,7 @@
           border: none;
           border-radius: 50px;
           font-size: 22px;
-          padding: 10px 20px;
+          padding: 15px 20px;
           z-index: 10;
         }
       }
