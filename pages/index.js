@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Navbar from '../components/Navbar/Navbar'
 import styles from '../sass/Home.module.scss'
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
