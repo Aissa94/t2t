@@ -14,7 +14,7 @@ import img5 from '../../public/assets/images/6.jpg'
 
 
 
-const BodyCarousel = ({title}) => {
+const BodyCarousel = ({ title }) => {
   SwiperCore.use([Autoplay]);
   return (
     <div className={styles.container}>
@@ -25,7 +25,7 @@ const BodyCarousel = ({title}) => {
             <path id="Path_980" data-name="Path 980" d="M17.545,5.923a4,4,0,0,1,6.91,0L38.491,29.985A4,4,0,0,1,35.036,36H6.964a4,4,0,0,1-3.455-6.015l6.765-11.6Z" transform="translate(-2.958 -3.939)" fill="#35d5c5" />
           </svg>
           <h1 className={styles.text}>{title}</h1>
-           
+
         </div>
 
 
@@ -45,14 +45,14 @@ const BodyCarousel = ({title}) => {
         spaceBetween={250}
         slidesPerView={4}
         modules={[Autoplay]}
-        pagination={{clickable: true}}
+        pagination={{ clickable: true }}
         autoplay={{
-              delay: 2000,
-              pauseOnMouseEnter: true,
-              disableOnInteraction: false
-             }}
+          delay: 2000,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false
+        }}
         loop
-        
+
       >
 
 
@@ -67,15 +67,15 @@ const BodyCarousel = ({title}) => {
         </SwiperSlide>
 
         <SwiperSlide >
-          <CardCarusal  imgUrl={img3}/>
+          <CardCarusal imgUrl={img3} />
         </SwiperSlide>
 
         <SwiperSlide >
-          <CardCarusal  imgUrl={img4}/>
+          <CardCarusal imgUrl={img4} />
         </SwiperSlide>
 
         <SwiperSlide>
-          <CardCarusal imgUrl={img5}/>
+          <CardCarusal imgUrl={img5} />
         </SwiperSlide>
 
 
