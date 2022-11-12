@@ -10,28 +10,71 @@ import img3 from "../../public/assets/images/3.jpg";
 import img4 from "../../public/assets/images/4.jpg";
 import img5 from "../../public/assets/images/6.jpg";
 
-const BodyCarousel = ({ title }) => {
+const BodyCarousel = ({ titleCarsusel }) => {
+
+  const data = [
+    {
+      'imgUrl': img1,
+      'description': 'Tokyo (東京, Tōkyō) is Japans capital and the worlds most populous metropolis',
+      'cityName': 'Tokyo',
+    },
+    {
+      'imgUrl': img2,
+      'description': ' Dubai is located on the eastern coast of the Arabian Peninsula in the southwest corner of the Arabian Gulf',
+      'cityName': 'Dubai',
+    },
+    {
+      'imgUrl': img3,
+      'description': 'Paris is a city of dreamers, dreaming of magic and creativity, a haven for top famous artists. ',
+      'cityName': 'Paris',
+    },
+    {
+      'imgUrl': img4,
+      'description': 'China is the worlds most populous country with a population of 1.44 billion people',
+      'cityName': 'Chaina',
+    },
+    {
+      'imgUrl': img5,
+      'description': 'Morocco is a country where African, Arab and European cultures are entwined. Located at the mouth of the Mediterranean Sea,',
+      'cityName': 'Morroco',
+    },
+
+
+  ]
+
+
   SwiperCore.use([Autoplay]);
+
   return (
     <div className={styles.container}>
       <div className={styles.titleSection}>
         <div className={styles.title}>
-          <svg
-            className={styles.logo}
-            xmlns="http://www.w3.org/2000/svg"
-            width="36.084"
-            height="32.061"
-            viewBox="0 0 36.084 32.061"
-          >
-            <path
-              id="Path_980"
-              data-name="Path 980"
-              d="M17.545,5.923a4,4,0,0,1,6.91,0L38.491,29.985A4,4,0,0,1,35.036,36H6.964a4,4,0,0,1-3.455-6.015l6.765-11.6Z"
-              transform="translate(-2.958 -3.939)"
-              fill="#35d5c5"
-            />
-          </svg>
-          <h1 className={styles.text}>{title}</h1>
+         
+            <svg
+              className={styles.logo}
+              xmlns="http://www.w3.org/2000/svg"
+              width="36.084"
+              height="32.061"
+              viewBox="0 0 36.084 32.061"
+            >
+              <path
+                id="Path_980"
+                data-name="Path 980"
+                d="M17.545,5.923a4,4,0,0,1,6.91,0L38.491,29.985A4,4,0,0,1,35.036,36H6.964a4,4,0,0,1-3.455-6.015l6.765-11.6Z"
+                transform="translate(-2.958 -3.939)"
+                fill="#35d5c5"
+              />
+            </svg>
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width="44" height="36" viewBox="0 0 44 36">
+              <path id="Polygon_3" data-name="Polygon 3" d="M22,0,44,36H0Z" fill="#fff" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="42" viewBox="0 0 36 42">
+              <path id="Polygon_2" data-name="Polygon 2" d="M17.545,5.923a4,4,0,0,1,6.91,0L38.491,29.985A4,4,0,0,1,35.036,36H6.964a4,4,0,0,1-3.455-6.015Z" transform="translate(36) rotate(90)" fill="#35d5c5" />
+            </svg>
+
+          */}
+
+          <h1 className={styles.text}>{titleCarsusel}</h1>
         </div>
 
         <svg
@@ -58,25 +101,14 @@ const BodyCarousel = ({ title }) => {
         pagination={{ clickable: true }}
         loop
       >
-        <SwiperSlide>
-          <CardCarusal imgUrl={img1} />
-        </SwiperSlide>
+        {data.map((data) => {
+          return <SwiperSlide>
+            <CardCarusal imgUrl={data.imgUrl} cityName={data.cityName} description={data.description} />
+          </SwiperSlide>
+        })}
 
-        <SwiperSlide>
-          <CardCarusal imgUrl={img2} />
-        </SwiperSlide>
 
-        <SwiperSlide>
-          <CardCarusal imgUrl={img3} />
-        </SwiperSlide>
 
-        <SwiperSlide>
-          <CardCarusal imgUrl={img4} />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <CardCarusal imgUrl={img5} />
-        </SwiperSlide>
       </Swiper>
     </div>
   );

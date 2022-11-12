@@ -48,6 +48,41 @@ a {
 }
 
 
+.hide {
+  display: none;
+}
+.instructions {
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  background: rgb(238, 237, 237);
+  color: rgb(58, 58, 58);
+  padding: 1rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+
+.valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.invalid {
+  color: red;
+  margin-left: 0.55rem;
+}
+
+
 .content {
   background: white;
   padding: 20px;

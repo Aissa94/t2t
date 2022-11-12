@@ -10,10 +10,22 @@ import { BiLogOut } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
 import Link from "next/link";
+import axios from "axios";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { auth } = useAuth();
+
+  const handleLogOut = async () => {
+    try {
+      const res = await axios.post(
+        "http://127.0.0.1:8000/api/logout", auth.userId
+      );
+      console.log(res.data)
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -76,7 +88,9 @@ const Navbar = () => {
                 </div>
                 <div className={styles.flex}>
                   <BiLogOut className={styles.icons} />
-                  <li className={styles.li}>LogOut</li>
+                  <li className={styles.li} onClick={handleLogOut} style={{cursor:"pointer"}}>
+                    LogOut
+                  </li>
                 </div>
               </ul>
             </div>
@@ -95,7 +109,7 @@ const Navbar = () => {
 
           {open && (
             <Link href={"/login"}>
-                <button className={styles.wallet}>Login</button>
+              <button className={styles.wallet}>Login</button>
             </Link>
           )}
 

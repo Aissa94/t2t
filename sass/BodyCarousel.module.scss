@@ -1,68 +1,84 @@
 .container {
-    max-width: 1366px;
-    margin: 0 auto;
-    margin-bottom: 20px;
+  max-width: 1366px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 
+  .titleSection {
+    display: flex;
+    justify-content: space-between;
 
-    .titleSection {
-        display: flex;
-        justify-content: space-between;
-
-        .title {
-            display: flex;
-        }
-
-        .text {
-            font-weight: 500;
-            color: #449CE1;
-            font-size: 31px;
-            margin-left: 20px;
-        }
-
-        .logo {
-            margin-top: 25px;
-        }
-
+    .title {
+      display: flex;
     }
 
-    .CardGroup {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-
+    .text {
+      font-weight: 500;
+      color: #449ce1;
+      font-size: 31px;
+      margin-left: 20px;
     }
 
+    .logo {
+      margin-top: 25px;
+    }
+  }
+
+  .CardGroup {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 
 .CardCarusal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  width: 388px;
+  height: 413px;
+  border-radius: 34px;
+
+  .image {
+    width: 388.78px;
+    height: 255px;
+    border-radius: 34px;
+    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .textSection {
+    width: 388.78px;
+    height: 158px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    width: 388px;
-    height: 413px;
-    border-radius: 34px;
+    padding: 15px;
 
+    .titleSection {
+      display: flex;
+      justify-content: space-between;
 
-    .image {
-        width: 388.78px;
-        height: 255px;
-        border-radius: 34px;
-        box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.3);
-
-
+      .title {
+        color: #449ce1;
+        font-size: 18px;
+        font-weight: bold;
+      }
     }
-
+    
     .textSection {
+        width: 388.78px;
+        height: 158px;
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 0px;
 
         .titleSection {
             display: flex;
             justify-content: space-between;
+            gap: 50px;
+
 
             .title {
+
                 color: #449CE1;
                 font-size: 18px;
                 font-weight: bold;
@@ -77,5 +93,5 @@
         }
 
     }
-
+  }
 }
