@@ -9,12 +9,9 @@
     padding-top: 57px;
     flex-direction: row;
 
-
-
     .left {
         flex: 1;
         justify-items: start;
-
 
         .leftSection {
             padding: 10px;
@@ -51,7 +48,6 @@
                 font-weight: lighter;
             }
 
-
         }
 
         .bottomSection {
@@ -86,9 +82,7 @@
         }
     }
 
-
     .rightSection {
-
 
         .head {
             font-size: 30px;
@@ -145,7 +139,5 @@
         display: flex;
         gap: 20px;
     }
-
-
 
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React , {useState} from 'react'
 import styles from '../../sass/Register.module.scss'
 
@@ -76,7 +77,9 @@ const RegisterPage = () => {
                  <br/>
                  login with your personal info
                 </p>
-                <button className={styles.btn}>Login</button>
+                <Link href={'/login'}>
+                 <button className={styles.btn}>Login</button>
+                </Link>
               </div>
 
 

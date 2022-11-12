@@ -8,15 +8,17 @@ import { RiGroupFill } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
 import SwiperCore, { Autoplay } from 'swiper';
 import "swiper/css";
+import useAuth from "../hook/useAuth";
 
-const Hero = () => {
- 
+const Hero = () => { 
   const [toggleState, setToggleState] = useState(1);
-
+  const [active , setActive] = useState(false)
+  const {auth} = useAuth()
+  console.log(auth)
   const toggleTab = (index) => {
     setToggleState(index);
   };
-  SwiperCore.use([Autoplay]);
+
   return (
     <section className={styles.hero}>
       <div className={styles.blob1}>
@@ -150,19 +152,19 @@ const Hero = () => {
             </li>
 
             <li
-              className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(3)}
             >
               Homestay
             </li>
             <li
-              className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+              className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(4)}
             >
               Car Rental
             </li>
             <li
-              className={toggleState === 4 ? "tabs active-tabs" : "tabs"}
+              className={toggleState === 5 ? "tabs active-tabs" : "tabs"}
               onClick={() => toggleTab(5)}
             >
               Business

@@ -1,56 +1,42 @@
-import React, { useState, useEffect , useRef } from "react";
+import React, { useState, useEffect , useContext } from "react";
 import styles from "../../sass/Login.module.scss";
 import axios from "axios"
+import useAuth from "../../hook/useAuth";
+import { useRouter } from 'next/router'
+import Link from "next/link";
 
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
 
 const LoginPage = () => {
 
   const LOGIN_URL = "http://127.0.0.1:8000/api/login"
   
-  const errorRef = useRef("")
+  const router = useRouter()
+  const {setAuth} = useAuth()
 
-  //email state
+  //email and pass state
   const [email, setEmail] = useState("");
-  const [validEmail, setValidEmail] = useState(false);
-  const [FocusEmail, setFocusEmail] = useState(false);
-
-  //password state
   const [password, setPassword] = useState("");
-  const [validPassword, setValidPassword] = useState(false);
-  const [passwordFocus, setPasswordFocus] = useState(false);
-
-  //error and success
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    setValidEmail(EMAIL_REGEX.test(email));
-  }, [email]);
-
-  useEffect(() => {
-    setValidPassword(PWD_REGEX.test(password));
-  }, [password]);
-
+  const [data ,setData] = useState(null)
+  const [token , setToken] = useState(null)
+ 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const valid1 = EMAIL_REGEX.test(email);
-    const valid2 = PWD_REGEX.test(password);
-
-    if (!valid1 || !valid2) {
-      setErrMsg("invalid ");
-      return;
-    }
+    e.preventDefault()
 
     try {
-     const res = await  axios.post(LOGIN_URL , {email , password} ,
+     const res = await axios.post(LOGIN_URL , {email , password} ,
       {
-        headers: {'Content-Type': 'application/json'},
-      })
-     console.log(res.data)
+        headers: { 'Content-Type': 'application/json' }
+     })
+     console.log(res.data.data)
+     setData(res.data.data)
+     setToken(res.data.data.access_token)
+     const accessToken = res.data.data.access_token
+     setAuth({email , password , accessToken})
+     router.push("/")
 
-    } catch (err) {
+    } 
+    catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
@@ -60,8 +46,13 @@ const LoginPage = () => {
       } else {
         setErrMsg("Login Failed");
       }
+     
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("token",token);
+}, [token])
 
   return (
     <section className={styles.hero}>
@@ -105,6 +96,7 @@ const LoginPage = () => {
       </div>
 
       <div className={styles.container}>
+       
         <div className={styles.box}>
           <div className={styles.boxConatiner}>
             <div className={styles.grid}>
@@ -116,6 +108,8 @@ const LoginPage = () => {
                       type="email"
                       placeholder="email"
                       className={styles.input}
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                     />
                   </div>
 
@@ -124,6 +118,8 @@ const LoginPage = () => {
                       type="password"
                       placeholder="password"
                       className={styles.input}
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                     />
                   </div>
                   <button className={styles.btn}>Login</button>
@@ -137,7 +133,9 @@ const LoginPage = () => {
                   <br />
                   journey begin!
                 </p>
-                <button className={styles.btn}>Sign up</button>
+                <Link href={'/register'}>
+                  <button className={styles.btn}>Sign up</button>
+                </Link>
               </div>
             </div>
           </div>

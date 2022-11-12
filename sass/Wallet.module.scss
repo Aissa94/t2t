@@ -1,0 +1,322 @@
+.header {
+  max-width: 1366px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 999;
+
+  .submenu {
+    display: flex;
+    align-items: center;
+    border: 1px solid #b3b3b385;
+    border-radius: 50px;
+    width: "auto";
+    justify-content: space-between;
+    transition: all 800ms ease-in-out;
+
+    .profile {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+
+      .btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .icons {
+        width: 40px;
+        height: 40px;
+        padding-right: 5px;
+        color: #707070;
+      }
+    }
+
+    .btnw {
+      background-color: #449ce1;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+    }
+  }
+
+  .menuu {
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    background-color: #fff;
+    border-radius: 30px;
+    width: 250px;
+    transition: all 800ms ease-in-out;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    .ul{
+      list-style: none;
+     
+      .flex{
+        display: flex;
+        align-items: center;
+
+        .icons{
+          width: 25px;
+          height: 25px;
+          color: #707070;
+          margin-right: 10px;
+        }
+      }
+
+      .li{
+        padding: 0.8rem 0;
+      }
+    }
+
+  }
+
+  .active {
+    display: flex;
+    align-items: center;
+    border: 1px solid #b3b3b385;
+    border-radius: 50px;
+    width: 250px;
+    justify-content: space-between;
+    transition: all 500ms ease-in-out;
+
+    .profile {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+
+    .wallet{
+      background-color: #4A94DE;
+      border: none;
+      color: #fff;
+      border-radius: 50px;
+      padding: 15px 20px;
+      font-weight: bold;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+
+      .btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .icons {
+        width: 40px;
+        height: 40px;
+        padding-right: 5px;
+        color: #707070;
+      }
+    }
+  }
+
+
+  .menu {
+    display: flex;
+    align-items: center;
+    border: 1px solid #b3b3b385;
+    border-radius: 50px;
+    width: "auto";
+    justify-content: space-between;
+    transition: all 800ms ease-in-out;
+
+    .profile {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      padding: 2px;
+
+      .btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .icons {
+        width: 40px;
+        height: 40px;
+        padding-right: 5px;
+        color: #707070;
+      }
+    }
+  }
+}
+
+.walletPage {
+  padding: 5rem 0;
+  .container {
+    max-width: 1366px;
+    margin: 0 auto;
+
+    .grid {
+      display: grid;
+      grid-template-columns: 70% 30%;
+
+      .sec2{
+         .card{
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+            border-radius: 20px;
+
+            .h33{
+                color: #707070;
+                font-family: "Ubuntu", sans-serif;
+            }
+         }
+      }
+
+      .sec1 {
+        .h1 {
+          margin: 0;
+          font-weight: bold;
+          font-size: 27px;
+          color: #707070;
+          font-family: "Ubuntu", sans-serif;
+          margin-bottom: 5px;
+        }
+        .p {
+          font-size: 16px;
+          margin-top: 0;
+          color: #2e2e2e;
+          font-weight: 400;
+          margin-bottom: 3rem;
+        }
+
+        .flexcard {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 3rem;
+
+          .card3 {
+            background-color: #f1871f;
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .flexcard3 {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              .h3{
+                margin: 0;
+                color: #fff;
+                font-weight: 300;
+                font-size: 18px;
+              }
+            }
+
+            .icon {
+              width: 40px;
+              height: 40px;
+              color: #fff;
+              margin-bottom: 0.7rem;
+            }
+          }
+
+          .cardadd{
+            background-color: #4A94DE;
+            padding: 2.3rem;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            
+            .icon {
+                width: 40px;
+                height: 40px;
+                color: #fff;
+                margin-bottom: 0.9rem;
+              }
+
+            .flexcard3 {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+  
+                .h3{
+                  margin: 0;
+                  color: #fff;
+                  font-weight: 300;
+                  font-size: 18px;
+                }
+          }
+        }
+
+          .card1 {
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+              rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+            padding: 2rem;
+            height: 100%;
+            border-radius: 10px;
+
+            .flexcard2{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0 ;
+                .h2{
+                    margin-top: 0 !important;
+                    font-size: 16px;
+                    font-weight: 300;
+                }
+            }
+
+            .visanumber{
+                color: #707070;
+                font-size: 18px;
+                margin-bottom: 5px;
+
+                
+            }
+            .h2 {
+              margin-bottom: 0 !important;
+              color: #707070;
+              font-weight: bold;
+            
+            }
+            .cardflex {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+
+              .h3 {
+                margin: 0;
+                color: #707070;
+                font-weight: 300;
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
