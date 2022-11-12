@@ -5,12 +5,10 @@ import ServiceSection from './ServiceSection'
 const Body = () => {
     return (
         <div>
-
             <ServiceSection />
-            <BodyCarousel title="Recommended" />
-            <BodyCarousel title="Offers" />
-            <BodyCarousel title="Get Inspiration" />
-
+            <BodyCarousel titleCarsusel="Recommended" />
+            <BodyCarousel titleCarsusel="Offers" />
+            <BodyCarousel titleCarsusel="Get Inspiration" />
         </div>
     )
 }

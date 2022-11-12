@@ -63,11 +63,35 @@
         font-weight: bold;
       }
     }
+    
+    .textSection {
+        width: 388.78px;
+        height: 158px;
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
 
-    .paragraph {
-      font-size: 18px;
-      font-style: italic;
-      color: #747474;
+        .titleSection {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+
+
+            .title {
+
+                color: #449CE1;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+        }
+
+        .paragraph {
+            font-size: 18px;
+            font-style: italic;
+            color: #747474;
+        }
+
     }
   }
 }
