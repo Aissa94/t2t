@@ -7,6 +7,7 @@ import Link from "next/link";
 
 
 
+
 const LoginPage = () => {
 
   const LOGIN_URL = "http://127.0.0.1:8000/api/login"
@@ -31,8 +32,9 @@ const LoginPage = () => {
      console.log(res.data.data)
      setData(res.data.data)
      setToken(res.data.data.access_token)
+     const userId = res.data.data.userId
      const accessToken = res.data.data.access_token
-     setAuth({email , password , accessToken})
+     setAuth({email , password , accessToken , userId })
      router.push("/")
 
     } 
@@ -45,8 +47,7 @@ const LoginPage = () => {
         setErrMsg("Unauthorized");
       } else {
         setErrMsg("Login Failed");
-      }
-     
+      } 
     }
   };
 

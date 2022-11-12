@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../sass/Home.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
@@ -18,6 +18,8 @@ const Hero = () => {
   const toggleTab = (index) => {
     setToggleState(index);
   };
+
+
 
   return (
     <section className={styles.hero}>

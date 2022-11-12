@@ -1,116 +1,318 @@
-import Link from 'next/link';
-import React , {useState} from 'react'
-import styles from '../../sass/Register.module.scss'
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import styles from "../../sass/Register.module.scss";
+import {
+  faCheck,
+  faTimes,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Svg from "../Svg";
+import axios from "axios";
+import { useRouter } from "next/router";
+import useAuth from "../../hook/useAuth";
 
-
-const Name_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const Email_Regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PASSWORD_REGEX =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const PHONE_REGEX = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
 const RegisterPage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [validFirstName, setValidFirstName] = useState(false);
+  const [FirstNameFocus, setFirstNameFocus] = useState(false);
 
-  const [name , setName] = useState("")
-  const [validname , setValidName] = useState(false)
-  const [focusName , setFocusName ] = useState(false)
+  const [lastName, setLastName] = useState("");
+  const [validLastName, setValidLastName] = useState(false);
+  const [LastNameFocus, setLastNameFocus] = useState(false);
 
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+
+  const [phone, setPhone] = useState("");
+  const [validPhone, setValidPhone] = useState(false);
+  const [focusPhone, setFocusPhone] = useState(false);
+
+  const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
 
-  const [matchPwd, setMatchPwd] = useState('');
+  const [password_confirmation, setPassword_Confirmation] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
+  const [token, setToken] = useState(null);
+  const {setAuth} = useAuth()
+
+  useEffect(() => {
+    setValidPhone(PHONE_REGEX.test(phone));
+  }, [phone]);
+
+  useEffect(() => {
+    setValidFirstName(USER_REGEX.test(firstName));
+  }, [firstName]);
+
+  useEffect(() => {
+    setValidLastName(USER_REGEX.test(lastName));
+  }, [lastName]);
+
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(email));
+  }, [email]);
+
+  useEffect(() => {
+    setValidPassword(PASSWORD_REGEX.test(password));
+    setValidMatch(password === password_confirmation);
+  }, [password, password_confirmation]);
+
+  const router = useRouter()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const valid1 = USER_REGEX.test(firstName);
+    const valid2 = USER_REGEX.test(firstName);
+    const valid4 = EMAIL_REGEX.test(email);
+    const valid3 = PASSWORD_REGEX.test(password);
+    const valid5 = PHONE_REGEX.test(phone);
+
+
+    if ( !valid1 || !valid2 || !valid3 || !valid4 || !valid5 ) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/register",
+        {firstName, lastName, password, email, phone },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      setToken(response.data.access_token);
+      const accessToken = response.data.access_token;
+      console.log(accessToken);
+      console.log(response.data)
+      localStorage.setItem("tokenN" , JSON.stringify(accessToken))
+      setAuth({firstName , lastName , phone , email , password , accessToken})
+      router.push('/')
+    } 
+     catch (err) {
+      console.log(err);
+    }
+  };
+
+
+
   return (
-     <>
-     <section className={styles.hero}>
-      <div className={styles.blob1}>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#BAE6FF"
-            d="M60.4,-37.6C71.6,-15.3,69.6,11.9,57.4,33.1C45.1,54.3,22.5,69.5,0.1,69.5C-22.4,69.4,-44.8,54.1,-57.2,32.8C-69.6,11.6,-72,-15.7,-60.8,-37.9C-49.6,-60.1,-24.8,-77.3,-0.1,-77.2C24.5,-77.2,49.1,-59.9,60.4,-37.6Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
-      <div className={styles.blob2}>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#A7F0BA"
-            d="M46.2,-54C59.7,-43.8,70.3,-29,74.5,-12.1C78.7,4.8,76.6,23.9,66.9,36.6C57.2,49.4,39.9,55.9,22.3,63.1C4.7,70.3,-13.3,78.2,-31.6,76.2C-49.8,74.1,-68.2,62,-74.1,45.7C-79.9,29.4,-73.3,8.8,-67.3,-9.6C-61.4,-28,-56.1,-44.3,-45,-54.9C-33.8,-65.6,-16.9,-70.7,-0.3,-70.4C16.4,-70.1,32.7,-64.3,46.2,-54Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
+    <>
+      <section className={styles.hero}>
+        <Svg />
+        <div className={styles.container}>
+          <div className={styles.box}>
+            <div className={styles.boxConatiner}>
+              <div className={styles.grid}>
+                <div className={styles.sec1}>
+                  <h1 className={styles.h1}>Welcome Back</h1>
+                  <p className={styles.p}>
+                    To keep connected with us please
+                    <br />
+                    login with your personal info
+                  </p>
+                  <Link href={"/login"}>
+                    <button className={styles.btn}>Login</button>
+                  </Link>
+                </div>
 
-      <div className={styles.blob3}>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#FFD6E8"
-            d="M41.9,-17.4C55.8,-0.2,69.4,23.9,62.4,38.5C55.4,53.2,27.7,58.5,9.8,52.8C-8.1,47.2,-16.3,30.6,-28.2,13.1C-40.1,-4.4,-55.9,-22.9,-51.8,-34.4C-47.8,-46,-23.9,-50.5,-4.9,-47.7C14,-44.9,28.1,-34.6,41.9,-17.4Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
+                <div className={styles.sec2}>
+                  <h1 className={styles.h1}>Create Account</h1>
+                  <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.inputAll}>
+                      <div className={styles.inputGrop}>
+                        <label>
+                          First Name :
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            className={validFirstName ? "valid" : "hide"}
+                          />
+                          <FontAwesomeIcon
+                            icon={faTimes}
+                            className={
+                              validFirstName || !firstName ? "hide" : "invalid"
+                            }
+                          />
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="First Name"
+                          className={styles.input}
+                          autoComplete="off"
+                          onChange={(e) => setFirstName(e.target.value)}
+                          value={firstName}
+                          required
+                          aria-invalid={validFirstName ? "false" : "true"}
+                          aria-describedby="uidnote"
+                          onFocus={() => setFirstNameFocus(true)}
+                          onBlur={() => setFirstNameFocus(false)}
+                        />
+                      </div>
+                      <div className={styles.inputGrop}>
+                        <label htmlFor="email" className="label">
+                          Last Name:
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            className={validLastName ? "valid" : "hide"}
+                          />
+                          <FontAwesomeIcon
+                            icon={faTimes}
+                            className={
+                              validLastName || !lastName ? "hide" : "invalid"
+                            }
+                          />
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="last Name"
+                          className={styles.input}
+                          onChange={(e) => setLastName(e.target.value)}
+                          value={lastName}
+                          required
+                          aria-invalid={validLastName ? "false" : "true"}
+                          aria-describedby="uidnote"
+                          onFocus={() => setLastNameFocus(true)}
+                          onBlur={() => setLastNameFocus(false)}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.inputGrop2}>
+                      <label htmlFor="email" className="label">
+                        Email:
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className={validEmail ? "valid" : "hide"}
+                        />
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className={validEmail || !email ? "hide" : "invalid"}
+                        />
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        className={styles.input}
+                        autoComplete="off"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        required
+                        aria-invalid={validEmail ? "false" : "true"}
+                        aria-describedby="uidnote"
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={() => setEmailFocus(false)}
+                      />
+                    </div>
 
-      <div className={styles.blob4}>
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill="#E8DAFF"
-            d="M68.8,-23.1C78,5.9,66.5,40.8,44.2,55.8C21.9,70.8,-11.2,65.9,-34.1,48.8C-57,31.7,-69.6,2.5,-62.2,-24C-54.9,-50.4,-27.4,-74.2,1.2,-74.6C29.8,-74.9,59.6,-52,68.8,-23.1Z"
-            transform="translate(100 100)"
-          />
-        </svg>
-      </div>
+                    <div className={styles.inputGrop2}>
+                      <label>
+                        Phone Number:
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className={validPhone ? "valid" : "hide"}
+                        />
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className={validPhone || !phone ? "hide" : "invalid"}
+                        />
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Phone Number:"
+                        className={styles.input}
+                        autoComplete="off"
+                        onChange={(e) => setPhone(e.target.value)}
+                        value={phone}
+                        required
+                        aria-invalid={validPhone ? "false" : "true"}
+                        aria-describedby="uidnote"
+                        onFocus={() => setFocusPhone(true)}
+                        onBlur={() => setFocusPhone(false)}
+                      />
+                    </div>
+                    <div className={styles.inputGrop2}>
+                      <label>
+                        Password:
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className={validPassword ? "valid" : "hide"}
+                        />
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className={
+                            validPassword || !password ? "hide" : "invalid"
+                          }
+                        />
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="Password"
+                        className={styles.input}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        aria-invalid={validPassword ? "false" : "true"}
+                        aria-describedby="pwdnote"
+                        onFocus={() => setPasswordFocus(true)}
+                        onBlur={() => setPasswordFocus(false)}
+                      />
+                    </div>
+                    <div className={styles.inputGrop2}>
+                      <label className={styles.label}>
+                        Confirm Password:
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className={
+                            validMatch && password_confirmation
+                              ? "valid"
+                              : "hide"
+                          }
+                        />
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className={
+                            validMatch || !password_confirmation
+                              ? "hide"
+                              : "invalid"
+                          }
+                        />
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="Re-enter password"
+                        className={styles.input}
+                        value={password_confirmation}
+                        onChange={(e) =>
+                          setPassword_Confirmation(e.target.value)
+                        }
+                        required
+                        aria-invalid={validMatch ? "false" : "true"}
+                        aria-describedby="pwdnote"
+                        onFocus={() => setMatchFocus(true)}
+                        onBlur={() => setMatchFocus(false)}
+                      />
+                    </div>
 
-
-      <div className={styles.container}>
-        <div className={styles.box}>
-          <div className={styles.boxConatiner}>
-            <div className={styles.grid}>
-          
-
-              <div className={styles.sec1}>
-                <h1 className={styles.h1}>Welcome Back</h1>
-                <p className={styles.p}>
-                 To keep connected with us please 
-                 <br/>
-                 login with your personal info
-                </p>
-                <Link href={'/login'}>
-                 <button className={styles.btn}>Login</button>
-                </Link>
-              </div>
-
-
-              <div className={styles.sec2}>
-                <h1 className={styles.h1}>Create Account</h1>
-                <form onSubmit={""} className={styles.form}>
-                  <div className={styles.inputGrop}>
-                    <input type="text" placeholder="First Name" className={styles.input}/>
-                    <input type="text" placeholder="First Name" className={styles.input}/>
-                  </div>
-                  <div className={styles.inputGrop2}>
-                    <input type="email" placeholder="Email" className={styles.input}/>
-                  </div>
-                  <div className={styles.inputGrop2}>
-                    <input type="password" placeholder="Password" className={styles.input}/>
-                  </div>
-                  <div className={styles.inputGrop2}>
-                    <input type="password" placeholder="Re-enter password" className={styles.input}/>
-                  </div>
-
-                  <button className={styles.btn}>Sign Up</button>
-                </form>
+                    <button className={styles.btn}>Sign Up</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
       </section>
-     </>
-  )
-}
+    </>
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

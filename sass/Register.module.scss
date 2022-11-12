@@ -137,7 +137,8 @@
       .boxConatiner {
         .grid {
           width: 999px;
-          height: 580px;
+          height: 100%;
+         
           display: grid;
           grid-template-columns: 40% 60%;
 
@@ -149,6 +150,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 2rem 0;
             align-items: center;
 
             .h1 {
@@ -160,7 +162,6 @@
             }
 
             .form {
-
               display: flex;
               justify-content: center;
               align-items: center;
@@ -183,12 +184,16 @@
                 }
                 
               }
-              .inputGrop {
+
+              .inputAll{
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1rem;
                 gap: 20px;
+              .inputGrop {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1rem;
+                gap: 10px;
                 .input {
                   background-color: #fff;
                   font-weight: 300;
@@ -203,10 +208,16 @@
                   border: none;
                 }
               }
+            }
 
+           
               .inputGrop2 {
                 width: 100%;
                 margin-bottom: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              
                 .input {
                   background-color: #fff;
                   font-weight: 300;
