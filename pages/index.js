@@ -18,8 +18,8 @@ export default function Home() {
       <main className={styles.main}>
         <Navbar />
         <Hero />
-        {/* <Body />
-        <Footer /> */}
+        <Body />
+        <Footer />
       </main>
     </div>
   );

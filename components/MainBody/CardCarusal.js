@@ -7,7 +7,7 @@ const CardCarusal = ({ imgUrl }) => {
   return (
     <div className={styles.CardCarusal}>
 
-      <Image src={imgUrl} className={styles.image} />
+      <Image src={imgUrl} className={styles.image} alt="photo"/>
 
 
       <div className={styles.textSection}>
