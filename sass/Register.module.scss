@@ -2,7 +2,7 @@
   max-width: 1366px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 0;
   position: relative;
@@ -143,6 +143,7 @@
 
           .sec2 {
             background-color: #fff;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px !important;
             display: flex;
@@ -168,9 +169,18 @@
                 background-color: #449ce1;
                 border-radius: 50px;
                 border: none;
+                font-size: 18px;
                 margin-top: 2rem;
+                font-family: "Ubuntu", sans-serif;
+                transition: all 0.4s ease-in-out;
+                box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
                 padding: 20px 5rem;
                 color: #fff;
+
+                &:hover {
+                  transform: translateY(-8px);
+                 
+                }
                 
               }
               .inputGrop {
@@ -216,6 +226,7 @@
 
           .sec1 {
             background-color: #449ce1;
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px !important;
             height: 100%;
@@ -250,8 +261,15 @@
               font-family: "Ubuntu", sans-serif;
               border: none;
               font-size: 18px;
-              border-radius: 20px;
+              border-radius: 50px;
+              box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
               padding: 15px 5rem;
+              transition: all 0.4s ease-in-out;
+
+              &:hover {
+                transform: translateY(-8px);
+               
+              }
             }
           }
         }

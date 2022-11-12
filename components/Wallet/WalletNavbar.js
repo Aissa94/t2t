@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styles from "./Navbar.module.scss";
-import { FiMenu } from "react-icons/fi";
+import styles from "../../sass/Wallet.module.scss";
+import Link from "next/link";
 import Image from "next/image";
+import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { TfiTicket } from "react-icons/tfi";
 import { BsPerson } from "react-icons/bs";
@@ -9,26 +10,24 @@ import { FaWallet } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
-import Link from "next/link";
 
-const Navbar = () => {
+const WalletNavbar = () => {
   const [open, setOpen] = useState(false);
   const { auth } = useAuth();
-
   return (
     <header className={styles.header}>
       <Link href={"/"}>
-        <div>
+        <div className={styles.logo}>
           <Image
             src="/assets/images/Component 9 – 1.png"
-            alt="loadg"
-            width="95"
-            height="84"
+            alt="sddf"
+            width={95}
+            height={84}
           />
         </div>
       </Link>
-
-      {auth.accessToken ? (
+      <div className={styles.navbarList}></div>
+      {auth.accessToken && (
         <div className={open ? styles.active : styles.menu}>
           <div className={styles.profile}>
             <img
@@ -41,7 +40,7 @@ const Navbar = () => {
 
           {open && (
             <Link href={"/wallet"}>
-              <button className={styles.wallet}>Mr.Omar</button>
+              <button className={styles.wallet}>9568 BFIC</button>
             </Link>
           )}
 
@@ -82,61 +81,11 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      ) : (
-        <div className={open ? styles.active : styles.menu}>
-          <div className={styles.profile}>
-            <img
-              src="/assets/images/0000.png"
-              alt="images"
-              width={50}
-              height={50}
-            />
-          </div>
-
-          {open && (
-            <Link href={"/login"}>
-                <button className={styles.wallet}>Login</button>
-            </Link>
-          )}
-
-          <div className={styles.toggle}>
-            <button className={styles.btn} onClick={() => setOpen(!open)}>
-              {open ? (
-                <AiOutlineClose className={styles.icons} />
-              ) : (
-                <FiMenu className={styles.icons} />
-              )}
-            </button>
-          </div>
-        </div>
-      )}
+       )} 
+  
+    
     </header>
   );
 };
 
-export default Navbar;
-
-{
-  /* <>
-<div className={styles.profile}>
-  <img
-    src="/assets/images/NoPath-1.png"
-    alt="images"
-    width={50}
-    height={50}
-  />
-</div>
-<div>
-  <h3 className={styles.h3Effect}>Jehad</h3>
-</div>
-<div className={styles.toggle}>
-  <button className={styles.btn} onClick={() => setOpen(!open)}>
-    {open ? (
-      <AiOutlineClose className={styles.icons} />
-    ) : (
-      <FiMenu className={styles.icons} />
-    )}
-  </button>
-</div>
-</> */
-}
+export default WalletNavbar;
