@@ -2,13 +2,21 @@
     max-width: 1366px;
     margin: 0 auto;
     .title{
-        color: #707070;
+        color: #449ce1;
         text-align: center; 
+        margin-bottom: 4rem;
+       
     }
     .body{
         
         margin-top: 6rem;
         margin-bottom: 6rem;
+        font-size: 20px;
+        a{
+            color:#449ce1
+        }
+       
+   
     }
     .content{
         justify-content: s;
