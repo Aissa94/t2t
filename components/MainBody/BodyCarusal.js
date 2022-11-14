@@ -15,7 +15,7 @@ const BodyCarousel = ({ titleCarsusel }) => {
   const data = [
     {
       'imgUrl': img1,
-      'description': 'Tokyo (東京, Tōkyō) is Japans capital and the worlds most populous metropolis',
+      'description': "Tokyo (東京, Tōkyō) is Japans capital and the worlds most populous metropolis ",
       'cityName': 'Tokyo',
     },
     {
