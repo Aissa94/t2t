@@ -34,7 +34,7 @@ const BodyCarousel = ({ titleCarsusel }) => {
       'cityName': 'Chaina',
     },
     {
-      'imgUrl': img6,
+      'imgUrl': img5,
       'description': 'Morocco is a country where African, Arab and European cultures are entwined. Located at the mouth of the Mediterranean Sea,',
       'cityName': 'Morroco',
     },
