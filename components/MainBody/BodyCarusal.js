@@ -15,7 +15,7 @@ const BodyCarousel = ({ titleCarsusel }) => {
   const data = [
     {
       'imgUrl': img1,
-      'description': 'Tokyo (東京, Tōkyō) is Japans capital and the worlds most populous metropolis',
+      'description': "Tokyo (東京, Tōkyō) is Japans capital and the worlds most populous metropolis ",
       'cityName': 'Tokyo',
     },
     {
@@ -34,7 +34,7 @@ const BodyCarousel = ({ titleCarsusel }) => {
       'cityName': 'Chaina',
     },
     {
-      'imgUrl': img5,
+      'imgUrl': img6,
       'description': 'Morocco is a country where African, Arab and European cultures are entwined. Located at the mouth of the Mediterranean Sea,',
       'cityName': 'Morroco',
     },
