@@ -1,0 +1,267 @@
+.heroHotel {
+  .conatiner {
+    max-width: 1366px;
+    margin: 0 auto;
+
+    .Image {
+      width: 100%;
+      position: relative;
+
+      .content {
+        position: absolute;
+        bottom: 5rem;
+        padding: 0 6rem;
+        z-index: 2;
+
+        .h1 {
+          color: #fff;
+          font-size: 59px;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .p {
+          max-width: 450px;
+          color: #fff;
+          font-style: italic;
+        }
+      }
+      .img {
+        width: 100%;
+        height: 590px;
+        object-fit: cover;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+
+      .overlay {
+        background: rgb(74, 148, 208);
+        background: linear-gradient(
+          45deg,
+          rgba(74, 148, 208, 0.45) 0%,
+          rgba(222, 103, 80, 0.45) 100%
+        );
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 590px;
+        z-index: 1;
+        opacity: 0.8;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+    }
+
+    .form {
+      margin-top: 2rem;
+
+      .flexItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .item {
+          .find {
+            background-color: #35d5c5;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+          }
+          .label {
+            font-size: 18px;
+            color: #707070;
+          }
+          .flex {
+            display: flex;
+            align-items: center;
+            border: 1px solid #70707056;
+            margin-top: 0.7rem;
+            width: 100%;
+            border-radius: 50px;
+
+            .itemChild2 {
+              width: 100%;
+              padding: 0.6rem 0.8rem;
+              .input {
+                border: none;
+                outline: none;
+                width: 100%;
+                font-size: 20px;
+              }
+            }
+
+            .itemChild {
+              display: flex;
+              align-items: flex-end;
+              padding: 10px;
+
+              .icons {
+                color: #449ce1;
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .allbtn {
+      margin: 1rem 0;
+
+      .h3 {
+        color: #707070;
+        font-size: 18px;
+        font-family: "Ubuntu", sans-serif;
+        font-weight: 400;
+      }
+
+      .btns {
+        display: flex;
+        gap: 10px;
+
+        .btn1 {
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+            rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+          border-radius: 50px;
+          background-color: transparent;
+          border: none;
+          padding: 1rem 2rem;
+          color: #449ce1;
+          font-size: 16px;
+          font-family: "Ubuntu", sans-serif;
+        }
+
+        .btn2 {
+          background-color: #449ce1;
+          border: none;
+          font-size: 16px;
+          font-family: "Ubuntu", sans-serif;
+          color: #fff;
+          border-radius: 50px;
+          padding: 1rem 2rem;
+        }
+      }
+    }
+
+    .details {
+      margin: 4rem 0;
+
+      .box {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+          rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+        padding: 2rem;
+        border-radius: 30px;
+
+        .grid {
+          display: grid;
+          grid-template-columns: 70% 29%;
+          grid-column-gap: 1rem;
+
+          .sec2 {
+            .flexContent {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .h1 {
+                color: #449ce1;
+                font-size: 25px;
+                margin-top: 0;
+              }
+
+              .p {
+                margin-top: 0;
+                color: #707070;
+                font-style: italic;
+                font-size: 20px;
+              }
+            }
+          }
+
+          .sec1 {
+            .h1 {
+              color: #449ce1;
+              font-size: 25px;
+              margin-top: 0;
+            }
+
+            .boxSec1 {
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+                rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+              padding: 1rem;
+              border-radius: 10px;
+              margin-bottom: 1rem;
+
+              .flex {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+
+                .price {
+                  text-align: right;
+                  .h1Price {
+                    color: #707070;
+                    margin-bottom: 5px;
+                    font-family: "Ubuntu", sans-serif;
+                  }
+
+                  .pPrice {
+                    font-style: italic;
+                    margin: 5px 0;
+                    color: #707070;
+                  }
+
+                  .h3Price {
+                    color: #449ce1;
+                    margin: 5px 0;
+                    font-weight: bold;
+                    font-size: 24px;
+                  }
+
+                  .btn {
+                    background-color: #35d5c5;
+                    padding: 1rem 2rem;
+                    border: none;
+                    border-radius: 50px;
+                    font-family: "Ubuntu", sans-serif;
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #fff;
+                  }
+                }
+
+                .content {
+                  .h1Content {
+                    color: #707070;
+                    margin-bottom: 5px;
+                    font-family: "Ubuntu", sans-serif;
+                  }
+
+                  .h3Contnt {
+                    color: #449ce1;
+                    margin: 5px 0;
+                  }
+
+                  .p {
+                    max-width: 400px;
+                  }
+                }
+
+                .image {
+                  border-radius: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
