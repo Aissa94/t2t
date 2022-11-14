@@ -44,7 +44,7 @@ const RegisterPage = () => {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [token, setToken] = useState(null);
-  const {setAuth} = useAuth()
+  const { setAuth } = useAuth();
 
   useEffect(() => {
     setValidPhone(PHONE_REGEX.test(phone));
@@ -67,19 +67,18 @@ const RegisterPage = () => {
     setValidMatch(password === password_confirmation);
   }, [password, password_confirmation]);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const valid1 = USER_REGEX.test(firstName);
     const valid2 = USER_REGEX.test(firstName);
     const valid4 = EMAIL_REGEX.test(email);
     const valid3 = PASSWORD_REGEX.test(password);
     const valid5 = PHONE_REGEX.test(phone);
 
-
-    if ( !valid1 || !valid2 || !valid3 || !valid4 || !valid5 ) {
+    if (!valid1 || !valid2 || !valid3 || !valid4 || !valid5) {
       setErrMsg("Invalid Entry");
       return;
     }
@@ -87,7 +86,7 @@ const RegisterPage = () => {
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/register",
-        {firstName, lastName, password, email, phone },
+        { firstName, lastName, password, email, phone },
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -95,17 +94,14 @@ const RegisterPage = () => {
       setToken(response.data.access_token);
       const accessToken = response.data.access_token;
       console.log(accessToken);
-      console.log(response.data)
-      localStorage.setItem("tokenN" , JSON.stringify(accessToken))
-      setAuth({firstName , lastName , phone , email , password , accessToken})
-      router.push('/')
-    } 
-     catch (err) {
+      console.log(response.data);
+      localStorage.setItem("tokenN", JSON.stringify(accessToken));
+      setAuth({ firstName, lastName, phone, email, password, accessToken });
+      router.push("/");
+    } catch (err) {
       console.log(err);
     }
   };
-
-
 
   return (
     <>
@@ -158,6 +154,21 @@ const RegisterPage = () => {
                           onFocus={() => setFirstNameFocus(true)}
                           onBlur={() => setFirstNameFocus(false)}
                         />
+                        <p
+                          id="uidnote"
+                          className={
+                            FirstNameFocus && firstName && !validFirstName
+                              ? "instructions"
+                              : "offscreen"
+                          }
+                        >
+                          <FontAwesomeIcon icon={faInfoCircle} />
+                          4 to 24 characters.
+                          <br />
+                          Must begin with a letter.
+                          <br />
+                          Letters, numbers, underscores, hyphens allowed.
+                        </p>
                       </div>
                       <div className={styles.inputGrop}>
                         <label htmlFor="email" className="label">
@@ -185,6 +196,21 @@ const RegisterPage = () => {
                           onFocus={() => setLastNameFocus(true)}
                           onBlur={() => setLastNameFocus(false)}
                         />
+                        <p
+                          id="uidnote"
+                          className={
+                            LastNameFocus && lastName && !validLastName
+                              ? "instructions"
+                              : "offscreen"
+                          }
+                        >
+                          <FontAwesomeIcon icon={faInfoCircle} />
+                          4 to 24 characters.
+                          <br />
+                          Must begin with a letter.
+                          <br />
+                          Letters, numbers, underscores, hyphens allowed.
+                        </p>
                       </div>
                     </div>
                     <div className={styles.inputGrop2}>
@@ -212,6 +238,17 @@ const RegisterPage = () => {
                         onFocus={() => setEmailFocus(true)}
                         onBlur={() => setEmailFocus(false)}
                       />
+                      <p
+                        id="uidnote"
+                        className={
+                          emailFocus && email && !validEmail
+                            ? "instructions"
+                            : "offscreen"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        Email not valid
+                      </p>
                     </div>
 
                     <div className={styles.inputGrop2}>
@@ -266,6 +303,27 @@ const RegisterPage = () => {
                         onFocus={() => setPasswordFocus(true)}
                         onBlur={() => setPasswordFocus(false)}
                       />
+                      <p
+                        id="pwdnote"
+                        className={
+                          passwordFocus && !validPassword
+                            ? "instructions"
+                            : "offscreen"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        8 to 24 characters.
+                        <br />
+                        Must include uppercase and lowercase letters, a number
+                        and a special character.
+                        <br />
+                        Allowed special characters:{" "}
+                        <span aria-label="exclamation mark">!</span>{" "}
+                        <span aria-label="at symbol">@</span>{" "}
+                        <span aria-label="hashtag">#</span>{" "}
+                        <span aria-label="dollar sign">$</span>{" "}
+                        <span aria-label="percent">%</span>
+                      </p>
                     </div>
                     <div className={styles.inputGrop2}>
                       <label className={styles.label}>
@@ -301,6 +359,17 @@ const RegisterPage = () => {
                         onFocus={() => setMatchFocus(true)}
                         onBlur={() => setMatchFocus(false)}
                       />
+                      <p
+                        id="confirmnote"
+                        className={
+                          matchFocus && !validMatch
+                            ? "instructions"
+                            : "offscreen"
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        Must match the first password input field.
+                      </p>
                     </div>
 
                     <button className={styles.btn}>Sign Up</button>

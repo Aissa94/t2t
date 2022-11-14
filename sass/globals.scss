@@ -47,6 +47,19 @@ a {
   font-weight: bold;
 }
 
+.rdrCalendarWrapper{
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.inputBox{
+   padding: 1rem 2rem ;
+   border-radius: 50px;
+   border: 1px solid;
+   margin-top: 0.7rem;
+   border: 1px solid #70707056;
+}
+
 
 .hide {
   display: none;
@@ -60,6 +73,7 @@ a {
   padding: 1rem;
   position: relative;
   bottom: -10px;
+  margin: 0 !important;
 }
 
 .instructions > svg {

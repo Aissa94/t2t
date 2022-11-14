@@ -19,9 +19,10 @@ const Navbar = () => {
   const handleLogOut = async () => {
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/logout", auth.userId
+        "http://127.0.0.1:8000/api/logout",
+        auth.userId
       );
-      console.log(res.data)
+      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -39,6 +40,21 @@ const Navbar = () => {
           />
         </div>
       </Link>
+
+      <nav className={styles.navbar}>
+        <ul className={styles.ull}>
+          <li className={styles.lii}>Home</li>
+          <div className={styles.height}/>
+          <li className={styles.lii}>Flights</li>
+          <div className={styles.height}/>
+          <li className={styles.lii}>Hotels</li>
+          <div className={styles.height}/>
+          <li className={styles.lii}>Car Rental</li>
+          <div className={styles.height}/>
+          <li className={styles.lii}>Homestay</li>
+        </ul>
+        <button className={styles.btnNavber}>Business</button>
+      </nav>
 
       {auth.accessToken ? (
         <div className={open ? styles.active : styles.menu}>
@@ -88,7 +104,11 @@ const Navbar = () => {
                 </div>
                 <div className={styles.flex}>
                   <BiLogOut className={styles.icons} />
-                  <li className={styles.li} onClick={handleLogOut} style={{cursor:"pointer"}}>
+                  <li
+                    className={styles.li}
+                    onClick={handleLogOut}
+                    style={{ cursor: "pointer" }}
+                  >
                     LogOut
                   </li>
                 </div>
@@ -129,28 +149,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{
-  /* <>
-<div className={styles.profile}>
-  <img
-    src="/assets/images/NoPath-1.png"
-    alt="images"
-    width={50}
-    height={50}
-  />
-</div>
-<div>
-  <h3 className={styles.h3Effect}>Jehad</h3>
-</div>
-<div className={styles.toggle}>
-  <button className={styles.btn} onClick={() => setOpen(!open)}>
-    {open ? (
-      <AiOutlineClose className={styles.icons} />
-    ) : (
-      <FiMenu className={styles.icons} />
-    )}
-  </button>
-</div>
-</> */
-}
