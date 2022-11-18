@@ -27,7 +27,7 @@ const WalletNavbar = () => {
         </div>
       </Link>
       <div className={styles.navbarList}></div>
-      {auth.accessToken && (
+      {auth?.accessToken && (
         <div className={open ? styles.active : styles.menu}>
           <div className={styles.profile}>
             <img
@@ -81,9 +81,9 @@ const WalletNavbar = () => {
             </div>
           )}
         </div>
-       )} 
-  
-    
+       )}
+
+
     </header>
   );
 };
