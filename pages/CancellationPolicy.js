@@ -2,10 +2,14 @@ import React from "react";
 import styles from "../sass/FooterPages.module.scss";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import Head from 'next/head';
 
 const CancellationPolicy = () => {
   return (
     <>
+      <Head>
+        <title>Cancellation Policy</title>
+      </Head>
       <div className={styles.container}>
         <Navbar />
         <div className={styles.body}>
@@ -28,13 +32,13 @@ const CancellationPolicy = () => {
               your flight separately.
             </p>
             <p>
-              
+
               If you don't have an account, you can use the itinerary or
               confirmation number in the email you received when you first
               booked your trip.
             </p>
             <p>
-         
+
               For future travel, look for the Free cancellation and No change
               fee filters when you're shopping.
             </p>

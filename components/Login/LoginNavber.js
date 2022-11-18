@@ -11,12 +11,12 @@ const LoginNavber = () => {
   return (
     <header className={styles.header}>
 
-      <div className={styles.logo}>
+      <div>
         <Link href={"/"}>
-        <Image src="/assets/images/Component 9 – 1.png" alt="sddf"  width={95} height={84}/>
+        <Image src="/assets/images/Component 9 – 1.png"  width={95} height={84}/>
         </Link>
       </div>
-      
+
     </header>
   );
 };

@@ -2,10 +2,14 @@ import React from "react";
 import styles from "../sass/FooterPages.module.scss";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
+import Head from 'next/head';
 
 const FAQ = () => {
   return (
     <>
+      <Head>
+        <title>FAQs</title>
+      </Head>
       <div className={styles.container}>
         <Navbar />
         <div className={styles.body}>

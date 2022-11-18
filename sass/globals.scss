@@ -21,6 +21,10 @@ a {
   box-sizing: border-box;
 }
 
+button:not(:disabled) {
+  cursor: pointer;
+}
+
 
 .Home_box2__VoZWc{
   display: flex;
@@ -123,18 +127,3 @@ a {
   display: block;
 }
 
-
-
-
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-
-
-}
