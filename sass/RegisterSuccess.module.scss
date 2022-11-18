@@ -1,0 +1,86 @@
+.container {
+    @apply max-w-4xl w-full rounded-lg shadow-clr-brown-dark shadow-2xl absolute top-1/4 left-1/4 items-center justify-center  text-center z-30 bg-white;
+    .content{
+        @apply my-20 mx-auto;
+
+        .title{
+            @apply text-4xl text-clr-blue-normal font-bold text-center my-2 py-3;
+        }
+
+        .description{
+            @apply text-clr-gray-normal text-base italic p-2 mt-16
+        }
+
+        .confirmMessage{
+            @apply text-clr-gray-dark text-lg mb-10 p-2 font-semibold
+        }
+
+        .getKey{
+            @apply text-lg font-bold bg-clr-blue-light text-white rounded-full shadow-lg py-2 px-5 mt-10 z-30;
+        }
+
+    }
+}
+
+
+.keyContainer {
+    @apply max-w-4xl w-full rounded-lg shadow-clr-brown-dark shadow-2xl absolute top-1/4 left-1/4 items-center justify-center  text-center z-30 bg-white;
+    .keyContent{
+        @apply my-10 flex flex-col;
+
+        .title{
+            @apply text-4xl text-clr-blue-normal font-bold text-center my-2 py-3;
+        }
+
+
+        .note{
+            @apply py-2 text-base text-clr-gray-dark w-3/4 mx-auto;
+        }
+        .keyContent{
+            @apply flex flex-col justify-center my-5 z-30;
+
+            .keybox{
+                @apply mx-auto text-lg text-clr-gray-dark rounded-2xl shadow-lg z-30 shadow-clr-gray-dark py-8 px-10 border border-clr-gray-normal;
+
+                .key{
+                    @apply p-2
+                }
+            }
+
+            .keyAction{
+                @apply my-8 flex flex-row items-center justify-center;
+
+                .keyCopy{
+                    @apply py-2 px-4 text-white text-lg bg-clr-blue-normal rounded-full mx-16 shadow-lg shadow-clr-gray-normal z-30 border-none;
+                }
+
+                .keyDownload{
+                    @apply py-2 px-4 text-white text-lg bg-clr-blue-normal rounded-full mx-16 shadow-lg shadow-clr-gray-normal z-30 border-none;
+                }
+            }
+
+
+        }
+
+        .alert{
+                @apply text-lg text-clr-gray-dark italic;
+        }
+
+        // .startBox{
+        //     @apply flex items-center justify-center mt-8;
+
+        //     .btn{
+        //         @apply text-white text-lg font-bold bg-clr-blue-light py-2 px-5 rounded-full z-30 shadow-lg shadow-clr-gray-normal border-none;
+        //     }
+        // }
+
+    }
+}
+
+#startBox .btn{
+    @apply text-white text-lg font-bold bg-clr-blue-light py-2 px-5 rounded-full z-30 shadow-lg shadow-clr-gray-normal border-none;
+}
+
+.deactive{
+ @apply opacity-20
+}

@@ -9,9 +9,8 @@ const PrivacyPolicy = () => {
       <div className={styles.container}>
         <Navbar />
 
-       
         <div className={styles.body}>
-         <h1 className={styles.title}>Privacy Policy</h1>
+          <h1 className={styles.title}>Privacy Policy</h1>
           <p>
             Time2Travel., Part of Innovation Factory LLC (“we” or “us”) values
             you as our customer and recognizes that privacy is important to you.
@@ -21,9 +20,7 @@ const PrivacyPolicy = () => {
             hold about you and tells you how to contact us.
           </p>
 
-          <p>
-            <h2>Privacy Statement Summary</h2>
-          </p>
+          <h2>Privacy Statement Summary</h2>
 
           <p>
             This is a summary of our Privacy Statement. To review our Privacy
@@ -116,9 +113,8 @@ const PrivacyPolicy = () => {
             information.
           </p>
 
-          <p>
-            <h2>Categories of Personal Information We Collect</h2>
-          </p>
+          <h2>Categories of Personal Information We Collect</h2>
+
           <p>
             When you use our platform, Apps, or associated tools or services, we
             may collect the following kinds of personal information from you as
@@ -216,9 +212,9 @@ const PrivacyPolicy = () => {
             Our Cookie Statement section, included in this Privacy Statement,
             further explains how we use cookies and similar tracking technology.
           </p>
-          <p>
-            <h2>Mobile Apps</h2>
-          </p>
+
+          <h2>Mobile Apps</h2>
+
           <p>
             When you download and use any of our mobile apps, we collect certain
             technical information from your device to enable the app to work
@@ -229,7 +225,7 @@ const PrivacyPolicy = () => {
             <li>
               Device and telephone connectivity information such as your
               carrier, network type, network operator, subscriber identity
-              module ("SIM") operator, and SIM country
+              module (SIM) operator, and SIM country
             </li>
             <li>Operating system and version</li>
             <li>Device model</li>
@@ -241,7 +237,7 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               Device settings selected or enabled, such as Wi-Fi, Global
-              Positioning System ("GPS"), and Bluetooth (which may be used for
+              Positioning System (GPS), and Bluetooth (which may be used for
               location services, subject to your permission as explained below)
             </li>
             <li>Mobile device settings</li>
@@ -268,9 +264,8 @@ const PrivacyPolicy = () => {
             can log off or change your mobile device’s settings.
           </p>
 
-          <p>
-            <h2>Use of Personal Information</h2>
-          </p>
+          <h2>Use of Personal Information</h2>
+
           <p>
             We use your personal information for various purposes described
             below, which depend on the site you visit or the app you use. 
@@ -308,7 +303,7 @@ const PrivacyPolicy = () => {
             <li>
               Help you to use our services faster and easier through features
               like the ability to sign-in using your account within the online
-              services and sites of some of the Innovation Factory companies.{" "}
+              services and sites of some of the Innovation Factory companies.{' '}
               <br />
               <br />
             </li>
@@ -442,9 +437,7 @@ const PrivacyPolicy = () => {
             Rights and Choices section below.
           </p>
 
-          <p>
-            <h2>Sharing of Personal Information</h2>
-          </p>
+          <h2>Sharing of Personal Information</h2>
 
           <p>
             We share your personal information as described below and in this
@@ -538,9 +531,7 @@ const PrivacyPolicy = () => {
             </li>
           </ul>
 
-          <p>
-            <h2>Your Rights and Choices</h2>
-          </p>
+          <h2>Your Rights and Choices</h2>
 
           <p>
             You have certain rights and choices with respect to your personal
@@ -625,9 +616,9 @@ const PrivacyPolicy = () => {
             exercise their personal data protection rights in accordance with
             applicable data protection laws.
           </p>
-          <p>
-            <h2>International Data Transfer</h2>
-          </p>
+
+          <h2>International Data Transfer</h2>
+
           <p>
             The personal information we process may be transmitted or
             transferred to countries other than the country in which you reside.
@@ -641,9 +632,8 @@ const PrivacyPolicy = () => {
             information, we may process it in any of those countries.
           </p>
 
-          <p>
-            <h2>Security</h2>
-          </p>
+          <h2>Security</h2>
+
           <p>
             We want you to feel confident about using our platform and all
             associated tools and services, and we are committed to taking
@@ -654,9 +644,8 @@ const PrivacyPolicy = () => {
             process.  
           </p>
 
-          <p>
-            <h2>Record Retention</h2>
-          </p>
+          <h2>Record Retention</h2>
+
           <p>
             We will retain your personal information in accordance with all
             applicable laws, for as long as it may be relevant to fulfill the
@@ -685,9 +674,9 @@ const PrivacyPolicy = () => {
               limitations, and regulatory investigations
             </li>
           </ul>
-          <p>
-            <h2>Cookie Statement</h2>
-          </p>
+
+          <h2>Cookie Statement</h2>
+
           <p>
             <h3>Types of cookies and similar technologies</h3>
           </p>
@@ -841,9 +830,9 @@ const PrivacyPolicy = () => {
             pages visitors go to most, so we can improve our online services.
             You are not able to opt out of essential cookies.
           </p>
-          <p>
-            <h2>Other Types of Cookies</h2>
-          </p>
+
+          <h2>Other Types of Cookies</h2>
+
           <p>
             We also use other types of cookies to make our site engaging and
             useful to you:
@@ -932,7 +921,7 @@ const PrivacyPolicy = () => {
             <strong>Do-Not-Track Signals and Similar Mechanisms.</strong>
           </p>
           <p>
-            Some web browsers may transmit "do-not-track" signals to sites with
+            Some web browsers may transmit do-not-track signals to sites with
             which the browser communicates. Because of differences in how web
             browsers incorporate and activate this feature, it is not always
             clear whether users intend for these signals to be transmitted, or
@@ -945,22 +934,19 @@ const PrivacyPolicy = () => {
             these signals and make appropriate updates to this Cookie Statement.
           </p>
 
-          <p>
-            <h2>Contact Us</h2>
-          </p>
+          <h2>Contact Us</h2>
+
           <p>
             If you have any questions or concerns about our use of your personal
             information, or wish to inquire about our personal handling
-            practices, please contact us via{" "}
+            practices, please contact us via
             <strong>
-              {" "}
-              <a href="mailto:info@time2travel.com">info@time2travel.com</a>.
+              <a href='mailto:info@time2travel.com'>info@time2travel.com</a>.
             </strong>
           </p>
 
-          <p>
-            <h2>Updates to Statement</h2>
-          </p>
+          <h2>Updates to Statement</h2>
+
           <p>
             We may update this Statement in response to changing laws or
             technical or business developments. If we propose to make any
@@ -981,7 +967,7 @@ const PrivacyPolicy = () => {
       </div>
       <Footer />
     </>
-  );
+  )
 };
 
 export default PrivacyPolicy;

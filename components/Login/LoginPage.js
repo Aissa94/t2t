@@ -4,6 +4,8 @@ import axios from "axios"
 import useAuth from "../../hook/useAuth";
 import { useRouter } from 'next/router'
 import Link from "next/link";
+import { useAuthContext } from '../../context/auth_context'
+import { api_url } from '../../utils/constants'
 
 
 
@@ -11,7 +13,8 @@ import Link from "next/link";
 const LoginPage = () => {
 
   const LOGIN_URL = "http://127.0.0.1:8000/api/login"
-  
+  const { auth, authLogin } = useAuthContext()
+
   const router = useRouter()
   const {setAuth} = useAuth()
 
@@ -20,34 +23,30 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [data ,setData] = useState(null)
   const [token , setToken] = useState(null)
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-     const res = await axios.post(LOGIN_URL , {email , password} ,
-      {
-        headers: { 'Content-Type': 'application/json' }
-     })
-     console.log(res.data.data)
-     setData(res.data.data)
-     setToken(res.data.data.access_token)
-     const userId = res.data.data.userId
-     const accessToken = res.data.data.access_token
-     setAuth({email , password , accessToken , userId })
-     router.push("/")
+     const res = await axios.post(
+       api_url + "/login",
+       { email, password },
+       {
+         headers: { 'Content-Type': 'application/json' },
+       }
+     )
+     let auth_data = {
+       firstName: res.data.data.firstName,
+       lastName: res.data.data.lastName,
+       email: res.data.data.email,
+       accessToken: res.data.data.access_token,
+     }
+     authLogin(auth_data)
+     router.push('/')
 
-    } 
+    }
     catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      } 
+      console.log(err)
     }
   };
 
@@ -97,7 +96,7 @@ const LoginPage = () => {
       </div>
 
       <div className={styles.container}>
-       
+
         <div className={styles.box}>
           <div className={styles.boxConatiner}>
             <div className={styles.grid}>

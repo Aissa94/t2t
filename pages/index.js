@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Hero from "../components/Hero";
+import Hero from "../components/Hero/Hero";
 import Navbar from "../components/Navbar/Navbar";
 import styles from "../sass/Home.module.scss";
 import Body from "../components/MainBody/Body";

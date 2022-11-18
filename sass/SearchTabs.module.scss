@@ -1,0 +1,102 @@
+
+.navItem{
+    position: relative;
+    margin-top: 0rem;
+    margin-top: -1rem;
+
+
+    .ul{
+        display: flex;
+        padding-left: 50px ;
+    }
+
+    .hr{
+        margin-top: 1rem;
+        background:#F3EEEE ;
+        width: 100%;
+        height: 1px;
+    }
+
+    .margin{
+        margin-top: 2rem;
+    }
+
+    .flexItem{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0 1rem;
+
+
+        .item{
+            display: flex;
+            gap: 1rem;
+
+
+            .search{
+                background-color: #35d5c5;
+                width: 50px;
+                color: #fff;
+                padding: 10px;
+                border-radius: 50px;
+                height: 50px;
+            }
+
+            .itemChild2{
+                .h4{
+                    margin: 0;
+                    font-weight: 300;
+                    font-size: 16px;
+                    color: #B3B3B3;
+                    font-family: "Ubuntu", sans-serif;
+                    margin-bottom: 5px;
+                }
+                .h2{
+                    margin: 0;
+                    color: #707070;
+                    font-size: 21px;
+                    font-family: "Ubuntu", sans-serif;
+                }
+            }
+
+            .itemChild{
+                display: flex;
+                align-items: flex-end;
+
+                .icons{
+                    color: #449ce1;
+                    width: 30px;
+                    height: 30px;
+
+                }
+
+            }
+        }
+    }
+
+
+    .allBtn{
+        display: flex;
+        .btn1{
+            margin-right: 1rem ;
+            border: none;
+            background-color: transparent;
+            border: 1px solid #7070707e;
+            padding: 8px 15px;
+            border-radius: 40px;
+            color: #449ce1;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 500;
+            &:hover{
+            background-color: #449ce1;
+            color: #fff;
+            border: none;
+            }
+        }
+
+    }
+
+
+}
+

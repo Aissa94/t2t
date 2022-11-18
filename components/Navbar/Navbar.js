@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
 import styles from "./Navbar.module.scss";
 import { FiMenu } from "react-icons/fi";
 import Image from "next/image";
@@ -11,32 +11,48 @@ import { AiFillLike } from "react-icons/ai";
 import useAuth from "../../hook/useAuth";
 import Link from "next/link";
 import axios from "axios";
+import { api_url } from '../../utils/constants'
+import { useAuthContext } from "../../context/auth_context";
+import { useRouter } from 'next/router'
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
+  const { auth, authLogout } = useAuthContext()
+  const [ token , setToken] = useState(false);
+  const router = useRouter()
+
 
   const handleLogOut = async () => {
     try {
-      const res = await axios.post(
-        "http://127.0.0.1:8000/api/logout",
-        auth.userId
-      );
-      console.log(res.data);
+      const res = await axios.post(api_url + '/logout',[], {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+      if(res.data.code === "200"){
+        authLogout();
+        router.push('/login')
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    if(auth)
+      setToken(auth.accessToken)
+  }, [token])
+
   return (
     <header className={styles.header}>
-      <Link href={"/"}>
+      <Link href={'/'}>
         <div>
           <Image
-            src="/assets/images/Component 9 – 1.png"
-            alt="loadg"
-            width="95"
-            height="84"
+            src='/assets/images/Component 9 – 1.png'
+            alt='loadg'
+            width='95'
+            height='84'
           />
         </div>
       </Link>
@@ -44,31 +60,31 @@ const Navbar = () => {
       <nav className={styles.navbar}>
         <ul className={styles.ull}>
           <li className={styles.lii}>Home</li>
-          <div className={styles.height}/>
+          <div className={styles.height} />
           <li className={styles.lii}>Flights</li>
-          <div className={styles.height}/>
+          <div className={styles.height} />
           <li className={styles.lii}>Hotels</li>
-          <div className={styles.height}/>
+          <div className={styles.height} />
           <li className={styles.lii}>Car Rental</li>
-          <div className={styles.height}/>
+          <div className={styles.height} />
           <li className={styles.lii}>Homestay</li>
         </ul>
         <button className={styles.btnNavber}>Business</button>
       </nav>
 
-      {auth.accessToken ? (
+      {token ? (
         <div className={open ? styles.active : styles.menu}>
           <div className={styles.profile}>
             <img
-              src="/assets/images/NoPath-1.png"
-              alt="images"
+              src='/assets/images/NoPath-1.png'
+              alt='images'
               width={50}
               height={50}
             />
           </div>
 
           {open && (
-            <Link href={"/wallet"}>
+            <Link href={'/wallet'}>
               <button className={styles.wallet}>Mr.Omar</button>
             </Link>
           )}
@@ -107,7 +123,7 @@ const Navbar = () => {
                   <li
                     className={styles.li}
                     onClick={handleLogOut}
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                   >
                     LogOut
                   </li>
@@ -120,15 +136,15 @@ const Navbar = () => {
         <div className={open ? styles.active : styles.menu}>
           <div className={styles.profile}>
             <img
-              src="/assets/images/0000.png"
-              alt="images"
+              src='/assets/images/0000.png'
+              alt='images'
               width={50}
               height={50}
             />
           </div>
 
           {open && (
-            <Link href={"/login"}>
+            <Link href={'/login'}>
               <button className={styles.wallet}>Login</button>
             </Link>
           )}
@@ -145,7 +161,7 @@ const Navbar = () => {
         </div>
       )}
     </header>
-  );
+  )
 };
 
 export default Navbar;

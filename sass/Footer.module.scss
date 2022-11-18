@@ -8,14 +8,13 @@
   .line1 {
     margin-top: 40px;
     border: none;
-    height: 120px;
+    height: 130px;
     border-left: 0.1px #f3eeee solid;
   }
   .line2 {
-    margin-top: 20px;
-    border-radius: 35px;
-    border-top: 10px;
-    box-shadow: rgba(179, 179, 179, 24) 0px -5px 3px 0.3px;
+    margin-top: 40px;
+    border: none;
+    border-top: 0.1px #f3eeee solid;
   }
 
   .footerContainer {
@@ -25,7 +24,7 @@
 
     .topSection {
       display: flex;
-      
+
 
       .left {
         flex: 2;
@@ -171,7 +170,7 @@
           display: flex;
           color: #707070;
           gap: 75px;
-     
+
         }
       }
 

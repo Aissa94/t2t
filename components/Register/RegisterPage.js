@@ -12,6 +12,10 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import useAuth from "../../hook/useAuth";
 
+import { Spot_1, Spot_2, Spot_3, Spot_4 } from '../Shared/SVG'
+import { api_url, wallet_url } from '../../utils/constants'
+import { useAuthContext } from '../../context/auth_context'
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -19,6 +23,78 @@ const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const PHONE_REGEX = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
 
 const RegisterPage = () => {
+  const { auth, authLogin} = useAuthContext()
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+  })
+
+  const [formValidate, setFormValidate] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    phone: false,
+    password: false,
+    confirmPassword: false,
+  })
+
+  const [formFocus, setFormFocus] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    phone: false,
+    password: false,
+    confirmPassword: false,
+  })
+
+  const handleInput = (e) => {
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
+    setFormData({...formData , [name] : value})
+
+    switch (name) {
+      case 'firstName':
+        setFormValidate({
+          ...formValidate,
+          [name]: USER_REGEX.test(formData.firstName),
+        })
+        break
+      case 'lastName':
+        setFormValidate({
+          ...formValidate,
+          [name]: USER_REGEX.test(formData.lastName),
+        })
+        break
+      case 'email':
+        setFormValidate({
+          ...formValidate,
+          [name]: EMAIL_REGEX.test(formData.email),
+        })
+        break
+      case 'phone':
+        setFormValidate({
+          ...formValidate,
+          [name]: PHONE_REGEX.test(formData.phone),
+        })
+        break
+    }
+  }
+
+  useEffect(() => {
+    setFormValidate({
+      ...formValidate,
+      password: PASSWORD_REGEX.test(formData.password),
+      confirmPassword: formData.password === formData.confirmPassword,
+    })
+  }, [formData.password, formData.confirmPassword])
+
+
+
   const [firstName, setFirstName] = useState("");
   const [validFirstName, setValidFirstName] = useState(false);
   const [FirstNameFocus, setFirstNameFocus] = useState(false);
@@ -72,32 +148,46 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const valid1 = USER_REGEX.test(firstName);
-    const valid2 = USER_REGEX.test(firstName);
-    const valid4 = EMAIL_REGEX.test(email);
-    const valid3 = PASSWORD_REGEX.test(password);
-    const valid5 = PHONE_REGEX.test(phone);
-
-    if (!valid1 || !valid2 || !valid3 || !valid4 || !valid5) {
-      setErrMsg("Invalid Entry");
-      return;
+    if (
+      !formValidate.firstName ||
+      !formValidate.lastName ||
+      !formValidate.email ||
+      !formValidate.phone ||
+      !formValidate.password
+    ) {
+      setErrMsg('Invalid Entry')
+      return
     }
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/register",
-        { firstName, lastName, password, email, phone },
+        api_url + '/register',
+        formData,
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         }
-      );
-      setToken(response.data.access_token);
-      const accessToken = response.data.access_token;
-      console.log(accessToken);
-      console.log(response.data);
-      localStorage.setItem("tokenN", JSON.stringify(accessToken));
-      setAuth({ firstName, lastName, phone, email, password, accessToken });
-      router.push("/");
+      )
+
+      if (response.data.code === "200"){
+        const walletRes = await axios.get(
+          wallet_url + '/generateAddress',
+          {
+            headers: { 'Content-Type': 'application/json' },
+          }
+        )
+        console.log(walletRes.data.result)
+        let auth_data = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          accessToken: response.data.access_token,
+          privateKey: walletRes.data.result.privateKey,
+        }
+        authLogin(auth_data)
+        //console.log(auth)
+        router.push('/register-success')
+      }
+      //console.log('RESPONSE', response.data)
     } catch (err) {
       console.log(err);
     }
@@ -106,11 +196,21 @@ const RegisterPage = () => {
   return (
     <>
       <section className={styles.hero}>
-        <Svg />
+        {/* <Svg /> */}
+        <div>
+          <Spot_1 />
+          <Spot_2 />
+          <Spot_3 />
+          <Spot_4 />
+        </div>
+        {/* ----- container -----  */}
         <div className={styles.container}>
+          {/* ----- box -----  */}
           <div className={styles.box}>
+            {/* ----- box container -----  */}
             <div className={styles.boxConatiner}>
               <div className={styles.grid}>
+                {/* ----- head section -----  */}
                 <div className={styles.sec1}>
                   <h1 className={styles.h1}>Welcome Back</h1>
                   <p className={styles.p}>
@@ -118,48 +218,64 @@ const RegisterPage = () => {
                     <br />
                     login with your personal info
                   </p>
-                  <Link href={"/login"}>
+                  <Link href={'/login'}>
                     <button className={styles.btn}>Login</button>
                   </Link>
                 </div>
 
+                {/* ----- form section -----  */}
                 <div className={styles.sec2}>
                   <h1 className={styles.h1}>Create Account</h1>
+                  {/* ----- form -----  */}
                   <form onSubmit={handleSubmit} className={styles.form}>
+                    {/* ----- first & last name -----  */}
                     <div className={styles.inputAll}>
+                      {/* ----- first name -----  */}
                       <div className={styles.inputGrop}>
-                        <label>
+                        <label htmlFor='firstName'>
                           First Name :
                           <FontAwesomeIcon
                             icon={faCheck}
-                            className={validFirstName ? "valid" : "hide"}
+                            className={
+                              formValidate.firstName ? 'valid' : 'hide'
+                            }
                           />
                           <FontAwesomeIcon
                             icon={faTimes}
                             className={
-                              validFirstName || !firstName ? "hide" : "invalid"
+                              formValidate.firstName || !formData.firstName
+                                ? 'hide'
+                                : 'invalid'
                             }
                           />
                         </label>
                         <input
-                          type="text"
-                          placeholder="First Name"
+                          type='text'
+                          placeholder='First Name'
                           className={styles.input}
-                          autoComplete="off"
-                          onChange={(e) => setFirstName(e.target.value)}
-                          value={firstName}
+                          id='firstName'
+                          name='firstName'
+                          onChange={(e) => handleInput(e)}
+                          value={formData.firstName}
                           required
-                          aria-invalid={validFirstName ? "false" : "true"}
-                          aria-describedby="uidnote"
-                          onFocus={() => setFirstNameFocus(true)}
-                          onBlur={() => setFirstNameFocus(false)}
+                          autoComplete='off'
+                          aria-invalid={validFirstName ? 'false' : 'true'}
+                          aria-describedby='uidnote'
+                          onFocus={() =>
+                            setFormFocus({ ...formFocus, firstName: true })
+                          }
+                          onBlur={() =>
+                            setFormFocus({ ...formFocus, firstName: false })
+                          }
                         />
                         <p
-                          id="uidnote"
+                          id='uidnote'
                           className={
-                            FirstNameFocus && firstName && !validFirstName
-                              ? "instructions"
-                              : "offscreen"
+                            formFocus.firstName &&
+                            formData.firstName &&
+                            !formValidate.firstName
+                              ? 'instructions'
+                              : 'offscreen'
                           }
                         >
                           <FontAwesomeIcon icon={faInfoCircle} />
@@ -170,38 +286,51 @@ const RegisterPage = () => {
                           Letters, numbers, underscores, hyphens allowed.
                         </p>
                       </div>
+                      {/* ----- last name -----  */}
                       <div className={styles.inputGrop}>
-                        <label htmlFor="email" className="label">
+                        <label htmlFor='lastName' className='label'>
                           Last Name:
                           <FontAwesomeIcon
                             icon={faCheck}
-                            className={validLastName ? "valid" : "hide"}
+                            className={formValidate.lastName ? 'valid' : 'hide'}
                           />
                           <FontAwesomeIcon
                             icon={faTimes}
                             className={
-                              validLastName || !lastName ? "hide" : "invalid"
+                              formValidate.lastName || !formData.lastName
+                                ? 'hide'
+                                : 'invalid'
                             }
                           />
                         </label>
                         <input
-                          type="text"
-                          placeholder="last Name"
+                          type='text'
+                          placeholder='last Name'
                           className={styles.input}
-                          onChange={(e) => setLastName(e.target.value)}
-                          value={lastName}
+                          id='lastName'
+                          name='lastName'
+                          onChange={(e) => handleInput(e)}
+                          value={formData.lastName}
                           required
-                          aria-invalid={validLastName ? "false" : "true"}
-                          aria-describedby="uidnote"
-                          onFocus={() => setLastNameFocus(true)}
-                          onBlur={() => setLastNameFocus(false)}
+                          aria-invalid={
+                            formValidate.lastName ? 'false' : 'true'
+                          }
+                          aria-describedby='uidnote'
+                          onFocus={() =>
+                            setFormFocus({ ...formFocus, lastName: true })
+                          }
+                          onBlur={() =>
+                            setFormFocus({ ...formFocus, lastName: false })
+                          }
                         />
                         <p
-                          id="uidnote"
+                          id='uidnote'
                           className={
-                            LastNameFocus && lastName && !validLastName
-                              ? "instructions"
-                              : "offscreen"
+                            formFocus.lastName &&
+                            formData.lastName &&
+                            !formValidate.lastName
+                              ? 'instructions'
+                              : 'offscreen'
                           }
                         >
                           <FontAwesomeIcon icon={faInfoCircle} />
@@ -213,102 +342,147 @@ const RegisterPage = () => {
                         </p>
                       </div>
                     </div>
+                    {/* ----- email -----  */}
                     <div className={styles.inputGrop2}>
-                      <label htmlFor="email" className="label">
+                      <label htmlFor='email' className='label'>
                         Email:
                         <FontAwesomeIcon
                           icon={faCheck}
-                          className={validEmail ? "valid" : "hide"}
+                          className={formValidate.email ? 'valid' : 'hide'}
                         />
                         <FontAwesomeIcon
                           icon={faTimes}
-                          className={validEmail || !email ? "hide" : "invalid"}
+                          className={
+                            formValidate.email || !formData.email
+                              ? 'hide'
+                              : 'invalid'
+                          }
                         />
                       </label>
                       <input
-                        type="email"
-                        placeholder="Email"
+                        type='email'
+                        placeholder='Email'
                         className={styles.input}
-                        autoComplete="off"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
+                        id='email'
+                        name='email'
+                        autoComplete='off'
+                        onChange={(e) => handleInput(e)}
+                        value={formData.email}
                         required
-                        aria-invalid={validEmail ? "false" : "true"}
-                        aria-describedby="uidnote"
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
+                        aria-invalid={formValidate.email ? 'false' : 'true'}
+                        aria-describedby='uidnote'
+                        onFocus={() =>
+                          setFormFocus({ ...formFocus, email: true })
+                        }
+                        onBlur={() =>
+                          setFormFocus({ ...formFocus, email: false })
+                        }
                       />
                       <p
-                        id="uidnote"
+                        id='uidnote'
                         className={
-                          emailFocus && email && !validEmail
-                            ? "instructions"
-                            : "offscreen"
+                          formFocus.email &&
+                          formData.email &&
+                          !formValidate.email
+                            ? 'instructions'
+                            : 'offscreen'
                         }
                       >
                         <FontAwesomeIcon icon={faInfoCircle} />
                         Email not valid
                       </p>
                     </div>
-
+                    {/* ----- phone number -----  */}
                     <div className={styles.inputGrop2}>
-                      <label>
+                      <label htmlFor='phone'>
                         Phone Number:
                         <FontAwesomeIcon
                           icon={faCheck}
-                          className={validPhone ? "valid" : "hide"}
-                        />
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className={validPhone || !phone ? "hide" : "invalid"}
-                        />
-                      </label>
-                      <input
-                        type="number"
-                        placeholder="Phone Number:"
-                        className={styles.input}
-                        autoComplete="off"
-                        onChange={(e) => setPhone(e.target.value)}
-                        value={phone}
-                        required
-                        aria-invalid={validPhone ? "false" : "true"}
-                        aria-describedby="uidnote"
-                        onFocus={() => setFocusPhone(true)}
-                        onBlur={() => setFocusPhone(false)}
-                      />
-                    </div>
-                    <div className={styles.inputGrop2}>
-                      <label>
-                        Password:
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className={validPassword ? "valid" : "hide"}
+                          className={formValidate.phone ? 'valid' : 'hide'}
                         />
                         <FontAwesomeIcon
                           icon={faTimes}
                           className={
-                            validPassword || !password ? "hide" : "invalid"
+                            formValidate.phone || !formData.phone
+                              ? 'hide'
+                              : 'invalid'
                           }
                         />
                       </label>
                       <input
-                        type="password"
-                        placeholder="Password"
+                        type='text'
+                        placeholder='Phone Number:'
                         className={styles.input}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        id='phone'
+                        name='phone'
+                        autoComplete='off'
+                        onChange={(e) => handleInput(e)}
+                        value={formData.phone}
                         required
-                        aria-invalid={validPassword ? "false" : "true"}
-                        aria-describedby="pwdnote"
-                        onFocus={() => setPasswordFocus(true)}
-                        onBlur={() => setPasswordFocus(false)}
+                        aria-invalid={formValidate.phone ? 'false' : 'true'}
+                        aria-describedby='uidnote'
+                        onFocus={() =>
+                          setFormFocus({ ...formFocus, phone: true })
+                        }
+                        onBlur={() =>
+                          setFormFocus({ ...formFocus, phone: false })
+                        }
                       />
                       <p
-                        id="pwdnote"
+                        id='uidnote'
                         className={
-                          passwordFocus && !validPassword
-                            ? "instructions"
-                            : "offscreen"
+                          formFocus.phone &&
+                          formData.phone &&
+                          !formValidate.phone
+                            ? 'instructions'
+                            : 'offscreen'
+                        }
+                      >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        Phone Number is not valid
+                      </p>
+                    </div>
+                    {/* ----- password -----  */}
+                    <div className={styles.inputGrop2}>
+                      <label htmlFor='password'>
+                        Password:
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className={formValidate.password ? 'valid' : 'hide'}
+                        />
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className={
+                            formValidate.password || !formData.password
+                              ? 'hide'
+                              : 'invalid'
+                          }
+                        />
+                      </label>
+                      <input
+                        type='password'
+                        placeholder='Password'
+                        className={styles.input}
+                        id='password'
+                        name='password'
+                        value={formData.password}
+                        onChange={(e) => handleInput(e)}
+                        required
+                        aria-invalid={formValidate.password ? 'false' : 'true'}
+                        aria-describedby='pwdnote'
+                        onFocus={() =>
+                          setFormFocus({ ...formFocus, password: true })
+                        }
+                        onBlur={() =>
+                          setFormFocus({ ...formFocus, password: false })
+                        }
+                      />
+                      <p
+                        id='pwdnote'
+                        className={
+                          formFocus.password && !formValidate.password
+                            ? 'instructions'
+                            : 'offscreen'
                         }
                       >
                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -317,54 +491,59 @@ const RegisterPage = () => {
                         Must include uppercase and lowercase letters, a number
                         and a special character.
                         <br />
-                        Allowed special characters:{" "}
-                        <span aria-label="exclamation mark">!</span>{" "}
-                        <span aria-label="at symbol">@</span>{" "}
-                        <span aria-label="hashtag">#</span>{" "}
-                        <span aria-label="dollar sign">$</span>{" "}
-                        <span aria-label="percent">%</span>
+                        Allowed special characters:{' '}
+                        <span aria-label='exclamation mark'>!</span>{' '}
+                        <span aria-label='at symbol'>@</span>{' '}
+                        <span aria-label='hashtag'>#</span>{' '}
+                        <span aria-label='dollar sign'>$</span>{' '}
+                        <span aria-label='percent'>%</span>
                       </p>
                     </div>
+                    {/* ----- confirm password -----  */}
                     <div className={styles.inputGrop2}>
-                      <label className={styles.label}>
+                      <label className={styles.label} htmlFor='confirmPassword'>
                         Confirm Password:
                         <FontAwesomeIcon
                           icon={faCheck}
                           className={
-                            validMatch && password_confirmation
-                              ? "valid"
-                              : "hide"
+                            formValidate.confirmPassword && formData.confirmPassword
+                              ? 'valid'
+                              : 'hide'
                           }
                         />
                         <FontAwesomeIcon
                           icon={faTimes}
                           className={
-                            validMatch || !password_confirmation
-                              ? "hide"
-                              : "invalid"
+                            formValidate.confirmPassword || !formData.confirmPassword
+                              ? 'hide'
+                              : 'invalid'
                           }
                         />
                       </label>
                       <input
-                        type="password"
-                        placeholder="Re-enter password"
+                        type='password'
+                        placeholder='Re-enter password'
                         className={styles.input}
-                        value={password_confirmation}
-                        onChange={(e) =>
-                          setPassword_Confirmation(e.target.value)
-                        }
+                        id='confirmPassword'
+                        name='confirmPassword'
+                        value={formData.confirmPassword}
+                        onChange={(e) => handleInput(e)}
                         required
-                        aria-invalid={validMatch ? "false" : "true"}
-                        aria-describedby="pwdnote"
-                        onFocus={() => setMatchFocus(true)}
-                        onBlur={() => setMatchFocus(false)}
+                        aria-invalid={formValidate.confirmPassword ? 'false' : 'true'}
+                        aria-describedby='pwdnote'
+                        onFocus={() =>
+                          setFormFocus({ ...formFocus, confirmPassword: true })
+                        }
+                        onBlur={() =>
+                          setFormFocus({ ...formFocus, confirmPassword: false })
+                        }
                       />
                       <p
-                        id="confirmnote"
+                        id='confirmnote'
                         className={
-                          matchFocus && !validMatch
-                            ? "instructions"
-                            : "offscreen"
+                          formFocus.confirmPassword && !formValidate.confirmPassword
+                            ? 'instructions'
+                            : 'offscreen'
                         }
                       >
                         <FontAwesomeIcon icon={faInfoCircle} />
@@ -381,7 +560,7 @@ const RegisterPage = () => {
         </div>
       </section>
     </>
-  );
+  )
 };
 
 export default RegisterPage;
