@@ -28,10 +28,6 @@ jobs:
             - ./node_modules
 
       - run:
-          name: Test
-          command: |
-            yarn test
-      - run:
           name: Build and push Docker image
           command: | 
             yarn gencss
