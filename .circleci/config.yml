@@ -20,7 +20,7 @@ jobs:
 
       - run:
           name: yarn-install
-          command: yarn install
+          command: yarn build
 
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Build and push Docker image
           command: | 
-            yarn gencss
+            #yarn gencss
             docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
