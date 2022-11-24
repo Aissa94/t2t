@@ -1,4 +1,9 @@
 version: 2.1
+
+variables:
+- name: IMAGE_TAG
+  value: $(git rev-parse --short HEAD)
+
 jobs:
   build:
     docker:
@@ -31,6 +36,6 @@ jobs:
           name: Build and push Docker image
           command: | 
             #yarn gencss
-            docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG .
+            docker build -t $DOCKER_USERNAME/$IMAGE_NAME:${{ variables.IMAGE_TAG }} .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
+            docker push $DOCKER_USERNAME/$IMAGE_NAME:${{ variables.IMAGE_TAG }}
