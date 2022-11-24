@@ -8,7 +8,7 @@ jobs:
 # Install dependencies and run tests
   build-and-test:
     docker:
-      - image: node:16-alpine
+      - image: circleci/node:16
     steps:
       - checkout
       - run: npm ci
@@ -18,7 +18,7 @@ jobs:
   # Authenticate with Digital Ocean CLI and deploy the app
   deploy:
     docker:
-      - image: node:16-alpine
+      - image: circleci/node:16
     steps:
       - checkout
       # Allow using Docker commands
