@@ -3,7 +3,7 @@ services:
     entrypoint:
     - sleep
     - infinity
-    image: docker/node:16
+    image: docker/node:16-alpine
     init: true
     volumes:
     - type: bind
