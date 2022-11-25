@@ -22,6 +22,10 @@ jobs:
           keys: 
             - dependency-cache-{{ checksum "package.json" }}
             - dependency-cache-
+            
+      - add_ssh_keys:
+          fingerprints:
+            - "f0:ce:6d:35:17:3a:e6:19:61:45:46:d3:ef:8c:6a:a8"
 
       - run:
           name: yarn-install
@@ -39,3 +43,8 @@ jobs:
             docker build -t $DOCKER_USERNAME/$IMAGE_NAME:$(git rev-parse --short HEAD) .
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             docker push $DOCKER_USERNAME/$IMAGE_NAME:$(git rev-parse --short HEAD)
+
+      - deploy:
+          name: Deploy app to aaPanel Server via Docker
+          command: |
+            ssh -o StrictHostKeyChecking=no $SSH_PATH "docker image pull $DOCKER_USERNAME/$IMAGE_NAME:$(git rev-parse --short HEAD) && docker rm $IMAGE_NAME -f && docker run -e 'NODE_ENV=production' -d -p 3000:3000 --name $IMAGE_NAME $DOCKER_USERNAME/$IMAGE_NAME:$(git rev-parse --short HEAD)"
