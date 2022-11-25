@@ -162,7 +162,7 @@ const Footer = () => {
                   </Link>
 
                   <li>Newsroom</li>
-                  <li>International travel Docs</li>
+                  <li>Jihad</li>
                   <Link href='RefundPolicy'>
                     <li>Refund Policy</li>
                   </Link>
