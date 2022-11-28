@@ -158,7 +158,7 @@ const Footer = () => {
                   </Link>
 
                   <Link href='CancellationPolicy'>
-                    <li>Cancellation or transfer</li>
+                    <li>Jihad</li>
                   </Link>
 
                   <li>Newsroom</li>
